@@ -1,0 +1,108 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "PACKAGE-TARGET:BitCollections"
+    },
+    {
+      "guid" : "PACKAGE-TARGET:Collections"
+    },
+    {
+      "guid" : "PACKAGE-TARGET:DequeModule"
+    },
+    {
+      "guid" : "PACKAGE-TARGET:HashTreeCollections"
+    },
+    {
+      "guid" : "PACKAGE-TARGET:HeapModule"
+    },
+    {
+      "guid" : "PACKAGE-TARGET:OrderedCollections"
+    },
+    {
+      "guid" : "PACKAGE-TARGET:_CollectionsUtilities"
+    },
+    {
+      "guid" : "PACKAGE-TARGET:_RopeModule"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:BitCollections"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:Collections"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:DequeModule"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:HashTreeCollections"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:HeapModule"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:OrderedCollections"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:_RopeModule"
+    },
+    {
+      "guid" : "PACKAGE-TARGET:AsyncAlgorithms"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:AsyncAlgorithms"
+    }
+  ],
+  "containerPath" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphonesimulator",
+      "sdk" : "iphonesimulator17.4",
+      "sdkVariant" : "iphonesimulator",
+      "supportedArchitectures" : [
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/PrecompiledHeaders",
+      "indexRegularBuildIntermediatesPath" : "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/Build/Intermediates.noindex",
+      "indexRegularBuildProductsPath" : "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/Build/Products",
+      "pchPath" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

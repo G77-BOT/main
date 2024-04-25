@@ -1,0 +1,60 @@
+{
+  "" : {
+    "dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphonesimulator/DequeModule.build/Objects-normal/arm64/DequeModule-master.d",
+    "diagnostics" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphonesimulator/DequeModule.build/Objects-normal/arm64/DequeModule-master.dia",
+    "emit-module-dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphonesimulator/DequeModule.build/Objects-normal/arm64/DequeModule-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphonesimulator/DequeModule.build/Objects-normal/arm64/DequeModule-master-emit-module.dia",
+    "swift-dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphonesimulator/DequeModule.build/Objects-normal/arm64/DequeModule-master.swiftdeps"
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/_DequeBuffer.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/_DequeBufferHeader.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/_DequeSlot.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/_UnsafeWrappedBuffer.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque._Storage.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque._UnsafeHandle.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+Codable.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+Collection.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+CustomReflectable.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+Descriptions.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+Equatable.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+ExpressibleByArrayLiteral.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+Extras.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+Hashable.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+Sendable.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque+Testing.swift" : {
+
+  }
+}

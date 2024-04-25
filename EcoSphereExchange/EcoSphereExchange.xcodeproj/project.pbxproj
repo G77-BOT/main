@@ -1,0 +1,632 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A1D4BAD2BD8CA1300A8E98A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1D4BAC2BD8CA1300A8E98A /* StoreKit.framework */; };
+		1A2EF7E72BC4FE64005ADD7B /* FlightSearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2EF7E62BC4FE64005ADD7B /* FlightSearchEngine.swift */; };
+		1A2EF7E92BCA7BBC005ADD7B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A2EF7E82BCA7BBC005ADD7B /* LoginViewController.xib */; };
+		1A2EF7FC2BCA9059005ADD7B /* EcoSphereExchange_app.py in Resources */ = {isa = PBXBuildFile; fileRef = 1A2EF7FB2BCA9059005ADD7B /* EcoSphereExchange_app.py */; };
+		1A38183D2BC19609002E1803 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38183C2BC19609002E1803 /* CartItem.swift */; };
+		1A3BDDED2BD06A4A00881C7F /* PaymentProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3BDDEC2BD06A4A00881C7F /* PaymentProcessor.swift */; };
+		1A3BDDEF2BD06C7100881C7F /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3BDDEE2BD06C7100881C7F /* CheckoutView.swift */; };
+		1A3C0ED52BC0E38C00D659FD /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3C0ED42BC0E38C00D659FD /* AsyncAlgorithms */; };
+		1A3C0ED82BC1106F00D659FD /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3C0ED72BC1106F00D659FD /* CartView.swift */; };
+		1A495D1C2BC3DFAD008E7894 /* GamesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D1B2BC3DFAD008E7894 /* GamesSettingsView.swift */; };
+		1A495D1E2BC3E020008E7894 /* FlightBookingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D1D2BC3E020008E7894 /* FlightBookingSettingsView.swift */; };
+		1A495D202BC3E063008E7894 /* ECommerceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D1F2BC3E063008E7894 /* ECommerceSettingsView.swift */; };
+		1A495D222BC3E0A2008E7894 /* TaxiSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D212BC3E0A2008E7894 /* TaxiSettingsView.swift */; };
+		1A495D242BC3E0EB008E7894 /* MoneyTransferSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D232BC3E0EB008E7894 /* MoneyTransferSettingsView.swift */; };
+		1A495D262BC3E136008E7894 /* AffiliateProgramSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D252BC3E136008E7894 /* AffiliateProgramSettingsView.swift */; };
+		1A495D282BC3E193008E7894 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D272BC3E193008E7894 /* AdvancedSettingsView.swift */; };
+		1A495D2A2BC3E215008E7894 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D292BC3E215008E7894 /* NotificationSettingsView.swift */; };
+		1A495D2C2BC3E24A008E7894 /* PrivacySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D2B2BC3E24A008E7894 /* PrivacySettingsView.swift */; };
+		1A495D2E2BC3E299008E7894 /* AddressSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D2D2BC3E299008E7894 /* AddressSettingsView.swift */; };
+		1A495D312BC40314008E7894 /* AsyncAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A495D302BC40314008E7894 /* AsyncAlgorithms.swift */; };
+		1A4C20792BD2D7630011DEA6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C20782BD2D7630011DEA6 /* UserService.swift */; };
+		1A4C207B2BD2D7A10011DEA6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C207A2BD2D7A10011DEA6 /* LoginView.swift */; };
+		1A5052762BC2EFA000A71F90 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5052752BC2EFA000A71F90 /* UserSession.swift */; };
+		1A5052782BC2F78400A71F90 /* AffiliateSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5052772BC2F78400A71F90 /* AffiliateSignupView.swift */; };
+		1A50527A2BC36E5D00A71F90 /* TaxiAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5052792BC36E5D00A71F90 /* TaxiAppView.swift */; };
+		1A50527C2BC36F1200A71F90 /* HotelBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50527B2BC36F1200A71F90 /* HotelBookingView.swift */; };
+		1A50527E2BC36F7400A71F90 /* FlightBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50527D2BC36F7400A71F90 /* FlightBookingView.swift */; };
+		1A5052802BC36FC900A71F90 /* SendMoneyview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50527F2BC36FC900A71F90 /* SendMoneyview.swift */; };
+		1A5052822BC3707900A71F90 /* Gamesview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5052812BC3707900A71F90 /* Gamesview.swift */; };
+		1A522CA32BC43CF0005EB96C /* PaymentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A522CA22BC43CF0005EB96C /* PaymentInfoView.swift */; };
+		1A5A80D92BBF854800B99B39 /* BillingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A80D82BBF854800B99B39 /* BillingInfoView.swift */; };
+		1A5A80DB2BBF898E00B99B39 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A80DA2BBF898E00B99B39 /* UserInfoView.swift */; };
+		1A5A80DD2BBF8A6300B99B39 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A80DC2BBF8A6300B99B39 /* ChangePasswordView.swift */; };
+		1A5A80DF2BBF8AF800B99B39 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A80DE2BBF8AF800B99B39 /* WalletView.swift */; };
+		1A5A80E12BBF8B7D00B99B39 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A80E02BBF8B7D00B99B39 /* GeneralSettingsView.swift */; };
+		1A5A80E32BBF8BE400B99B39 /* AffiliateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A80E22BBF8BE400B99B39 /* AffiliateProgramView.swift */; };
+		1A5A80E52BBF8C2700B99B39 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A80E42BBF8C2700B99B39 /* AccountView.swift */; };
+		1A5FF2C82BC0379A00A845F0 /* MarketViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5FF2C72BC0379A00A845F0 /* MarketViews.swift */; };
+		1A5FF2CB2BC03B0C00A845F0 /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5FF2CA2BC03B0C00A845F0 /* Technology.swift */; };
+		1A5FF2CE2BC03B9D00A845F0 /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5FF2CD2BC03B9D00A845F0 /* BlogPost.swift */; };
+		1A7EB4C62BD4BC140022F79B /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7EB4C52BD4BC140022F79B /* PaymentButton.swift */; };
+		1AB1681E2BB11BAD00794F73 /* EcoSphereExchangeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1681D2BB11BAD00794F73 /* EcoSphereExchangeApp.swift */; };
+		1AB168202BB11BAD00794F73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1681F2BB11BAD00794F73 /* ContentView.swift */; };
+		1AB168222BB11BAD00794F73 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB168212BB11BAD00794F73 /* Item.swift */; };
+		1AB168242BB11BAF00794F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB168232BB11BAF00794F73 /* Assets.xcassets */; };
+		1AB168272BB11BAF00794F73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB168262BB11BAF00794F73 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A1D4BAC2BD8CA1300A8E98A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1A2EF7E62BC4FE64005ADD7B /* FlightSearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchEngine.swift; sourceTree = "<group>"; };
+		1A2EF7E82BCA7BBC005ADD7B /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		1A2EF7FB2BCA9059005ADD7B /* EcoSphereExchange_app.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = EcoSphereExchange_app.py; sourceTree = "<group>"; };
+		1A38183C2BC19609002E1803 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		1A3BDDEC2BD06A4A00881C7F /* PaymentProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProcessor.swift; sourceTree = "<group>"; };
+		1A3BDDEE2BD06C7100881C7F /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		1A3C0ED72BC1106F00D659FD /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		1A495D1B2BC3DFAD008E7894 /* GamesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesSettingsView.swift; sourceTree = "<group>"; };
+		1A495D1D2BC3E020008E7894 /* FlightBookingSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightBookingSettingsView.swift; sourceTree = "<group>"; };
+		1A495D1F2BC3E063008E7894 /* ECommerceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECommerceSettingsView.swift; sourceTree = "<group>"; };
+		1A495D212BC3E0A2008E7894 /* TaxiSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiSettingsView.swift; sourceTree = "<group>"; };
+		1A495D232BC3E0EB008E7894 /* MoneyTransferSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTransferSettingsView.swift; sourceTree = "<group>"; };
+		1A495D252BC3E136008E7894 /* AffiliateProgramSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateProgramSettingsView.swift; sourceTree = "<group>"; };
+		1A495D272BC3E193008E7894 /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
+		1A495D292BC3E215008E7894 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
+		1A495D2B2BC3E24A008E7894 /* PrivacySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsView.swift; sourceTree = "<group>"; };
+		1A495D2D2BC3E299008E7894 /* AddressSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSettingsView.swift; sourceTree = "<group>"; };
+		1A495D302BC40314008E7894 /* AsyncAlgorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAlgorithms.swift; sourceTree = "<group>"; };
+		1A4C20782BD2D7630011DEA6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		1A4C207A2BD2D7A10011DEA6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1A5052752BC2EFA000A71F90 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		1A5052772BC2F78400A71F90 /* AffiliateSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateSignupView.swift; sourceTree = "<group>"; };
+		1A5052792BC36E5D00A71F90 /* TaxiAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiAppView.swift; sourceTree = "<group>"; };
+		1A50527B2BC36F1200A71F90 /* HotelBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelBookingView.swift; sourceTree = "<group>"; };
+		1A50527D2BC36F7400A71F90 /* FlightBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightBookingView.swift; sourceTree = "<group>"; };
+		1A50527F2BC36FC900A71F90 /* SendMoneyview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMoneyview.swift; sourceTree = "<group>"; };
+		1A5052812BC3707900A71F90 /* Gamesview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gamesview.swift; sourceTree = "<group>"; };
+		1A522CA22BC43CF0005EB96C /* PaymentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInfoView.swift; sourceTree = "<group>"; };
+		1A5A80D82BBF854800B99B39 /* BillingInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingInfoView.swift; sourceTree = "<group>"; };
+		1A5A80DA2BBF898E00B99B39 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		1A5A80DC2BBF8A6300B99B39 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		1A5A80DE2BBF8AF800B99B39 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		1A5A80E02BBF8B7D00B99B39 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		1A5A80E22BBF8BE400B99B39 /* AffiliateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateProgramView.swift; sourceTree = "<group>"; };
+		1A5A80E42BBF8C2700B99B39 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		1A5FF2C72BC0379A00A845F0 /* MarketViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViews.swift; sourceTree = "<group>"; };
+		1A5FF2CA2BC03B0C00A845F0 /* Technology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Technology.swift; sourceTree = "<group>"; };
+		1A5FF2CD2BC03B9D00A845F0 /* BlogPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
+		1A7EB4C52BD4BC140022F79B /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		1AB1681A2BB11BAD00794F73 /* EcoSphereExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoSphereExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AB1681D2BB11BAD00794F73 /* EcoSphereExchangeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoSphereExchangeApp.swift; sourceTree = "<group>"; };
+		1AB1681F2BB11BAD00794F73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1AB168212BB11BAD00794F73 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		1AB168232BB11BAF00794F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AB168262BB11BAF00794F73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1AB168172BB11BAD00794F73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A3C0ED52BC0E38C00D659FD /* AsyncAlgorithms in Frameworks */,
+				1A1D4BAD2BD8CA1300A8E98A /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A1D4BAB2BD8CA1300A8E98A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A1D4BAC2BD8CA1300A8E98A /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A3C0ED62BC1103600D659FD /* Cartview */ = {
+			isa = PBXGroup;
+			children = (
+				1A3C0ED72BC1106F00D659FD /* CartView.swift */,
+				1A38183C2BC19609002E1803 /* CartItem.swift */,
+				1A3BDDEE2BD06C7100881C7F /* CheckoutView.swift */,
+			);
+			path = Cartview;
+			sourceTree = "<group>";
+		};
+		1A495D192BC3D600008E7894 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				1A5A80DE2BBF8AF800B99B39 /* WalletView.swift */,
+				1A5052792BC36E5D00A71F90 /* TaxiAppView.swift */,
+				1A50527B2BC36F1200A71F90 /* HotelBookingView.swift */,
+				1A50527D2BC36F7400A71F90 /* FlightBookingView.swift */,
+				1A2EF7E62BC4FE64005ADD7B /* FlightSearchEngine.swift */,
+				1A50527F2BC36FC900A71F90 /* SendMoneyview.swift */,
+				1A5052812BC3707900A71F90 /* Gamesview.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		1A495D1A2BC3DF5C008E7894 /* General Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1A5A80E02BBF8B7D00B99B39 /* GeneralSettingsView.swift */,
+				1A495D1B2BC3DFAD008E7894 /* GamesSettingsView.swift */,
+				1A495D1D2BC3E020008E7894 /* FlightBookingSettingsView.swift */,
+				1A495D1F2BC3E063008E7894 /* ECommerceSettingsView.swift */,
+				1A495D212BC3E0A2008E7894 /* TaxiSettingsView.swift */,
+				1A495D232BC3E0EB008E7894 /* MoneyTransferSettingsView.swift */,
+				1A495D252BC3E136008E7894 /* AffiliateProgramSettingsView.swift */,
+				1A495D272BC3E193008E7894 /* AdvancedSettingsView.swift */,
+				1A495D292BC3E215008E7894 /* NotificationSettingsView.swift */,
+				1A495D2B2BC3E24A008E7894 /* PrivacySettingsView.swift */,
+				1A495D2D2BC3E299008E7894 /* AddressSettingsView.swift */,
+			);
+			path = "General Settings";
+			sourceTree = "<group>";
+		};
+		1A495D2F2BC402CB008E7894 /* Async Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				1A495D302BC40314008E7894 /* AsyncAlgorithms.swift */,
+			);
+			path = "Async Algorithms";
+			sourceTree = "<group>";
+		};
+		1A522CA12BC43C66005EB96C /* Billings */ = {
+			isa = PBXGroup;
+			children = (
+				1A5A80D82BBF854800B99B39 /* BillingInfoView.swift */,
+				1A522CA22BC43CF0005EB96C /* PaymentInfoView.swift */,
+				1A3BDDEC2BD06A4A00881C7F /* PaymentProcessor.swift */,
+				1A7EB4C52BD4BC140022F79B /* PaymentButton.swift */,
+			);
+			path = Billings;
+			sourceTree = "<group>";
+		};
+		1A5A80D72BBF851900B99B39 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				1A5A80DA2BBF898E00B99B39 /* UserInfoView.swift */,
+				1A5A80DC2BBF8A6300B99B39 /* ChangePasswordView.swift */,
+				1A5A80E22BBF8BE400B99B39 /* AffiliateProgramView.swift */,
+				1A5A80E42BBF8C2700B99B39 /* AccountView.swift */,
+				1A5052752BC2EFA000A71F90 /* UserSession.swift */,
+				1A5052772BC2F78400A71F90 /* AffiliateSignupView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		1A5A80E62BBF8CA100B99B39 /* Market */ = {
+			isa = PBXGroup;
+			children = (
+				1A5FF2C72BC0379A00A845F0 /* MarketViews.swift */,
+			);
+			path = Market;
+			sourceTree = "<group>";
+		};
+		1A5FF2C92BC039E000A845F0 /* Technology */ = {
+			isa = PBXGroup;
+			children = (
+				1A5FF2CA2BC03B0C00A845F0 /* Technology.swift */,
+			);
+			path = Technology;
+			sourceTree = "<group>";
+		};
+		1A5FF2CC2BC03B7300A845F0 /* Blog */ = {
+			isa = PBXGroup;
+			children = (
+				1A5FF2CD2BC03B9D00A845F0 /* BlogPost.swift */,
+			);
+			path = Blog;
+			sourceTree = "<group>";
+		};
+		1A621F8F2BB4E779004D3FC1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1AB1681F2BB11BAD00794F73 /* ContentView.swift */,
+				1A4C20782BD2D7630011DEA6 /* UserService.swift */,
+				1A4C207A2BD2D7A10011DEA6 /* LoginView.swift */,
+				1A2EF7FB2BCA9059005ADD7B /* EcoSphereExchange_app.py */,
+				1A2EF7E82BCA7BBC005ADD7B /* LoginViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1AB168112BB11BAD00794F73 = {
+			isa = PBXGroup;
+			children = (
+				1AB1681C2BB11BAD00794F73 /* EcoSphereExchange */,
+				1AB1681B2BB11BAD00794F73 /* Products */,
+				1A1D4BAB2BD8CA1300A8E98A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1AB1681B2BB11BAD00794F73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AB1681A2BB11BAD00794F73 /* EcoSphereExchange.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AB1681C2BB11BAD00794F73 /* EcoSphereExchange */ = {
+			isa = PBXGroup;
+			children = (
+				1AB1681D2BB11BAD00794F73 /* EcoSphereExchangeApp.swift */,
+				1AB168212BB11BAD00794F73 /* Item.swift */,
+				1A621F8F2BB4E779004D3FC1 /* Views */,
+				1A5FF2CC2BC03B7300A845F0 /* Blog */,
+				1A5FF2C92BC039E000A845F0 /* Technology */,
+				1A5A80E62BBF8CA100B99B39 /* Market */,
+				1A495D2F2BC402CB008E7894 /* Async Algorithms */,
+				1A3C0ED62BC1103600D659FD /* Cartview */,
+				1A522CA12BC43C66005EB96C /* Billings */,
+				1A5A80D72BBF851900B99B39 /* Account */,
+				1A495D1A2BC3DF5C008E7894 /* General Settings */,
+				1A495D192BC3D600008E7894 /* Wallet */,
+				1AB168232BB11BAF00794F73 /* Assets.xcassets */,
+				1AB168252BB11BAF00794F73 /* Preview Content */,
+			);
+			path = EcoSphereExchange;
+			sourceTree = "<group>";
+		};
+		1AB168252BB11BAF00794F73 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1AB168262BB11BAF00794F73 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AB168192BB11BAD00794F73 /* EcoSphereExchange */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AB1682A2BB11BAF00794F73 /* Build configuration list for PBXNativeTarget "EcoSphereExchange" */;
+			buildPhases = (
+				1AB168162BB11BAD00794F73 /* Sources */,
+				1AB168172BB11BAD00794F73 /* Frameworks */,
+				1AB168182BB11BAD00794F73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EcoSphereExchange;
+			packageProductDependencies = (
+				1A3C0ED42BC0E38C00D659FD /* AsyncAlgorithms */,
+			);
+			productName = EcoSphereExchange;
+			productReference = 1AB1681A2BB11BAD00794F73 /* EcoSphereExchange.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1AB168122BB11BAD00794F73 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					1AB168192BB11BAD00794F73 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 1AB168152BB11BAD00794F73 /* Build configuration list for PBXProject "EcoSphereExchange" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1AB168112BB11BAD00794F73;
+			packageReferences = (
+				1A3C0ED32BC0E38C00D659FD /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+			);
+			productRefGroup = 1AB1681B2BB11BAD00794F73 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AB168192BB11BAD00794F73 /* EcoSphereExchange */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AB168182BB11BAD00794F73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2EF7FC2BCA9059005ADD7B /* EcoSphereExchange_app.py in Resources */,
+				1AB168272BB11BAF00794F73 /* Preview Assets.xcassets in Resources */,
+				1A2EF7E92BCA7BBC005ADD7B /* LoginViewController.xib in Resources */,
+				1AB168242BB11BAF00794F73 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AB168162BB11BAD00794F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A495D1C2BC3DFAD008E7894 /* GamesSettingsView.swift in Sources */,
+				1A50527A2BC36E5D00A71F90 /* TaxiAppView.swift in Sources */,
+				1A495D312BC40314008E7894 /* AsyncAlgorithms.swift in Sources */,
+				1A495D262BC3E136008E7894 /* AffiliateProgramSettingsView.swift in Sources */,
+				1A5A80D92BBF854800B99B39 /* BillingInfoView.swift in Sources */,
+				1A5A80DD2BBF8A6300B99B39 /* ChangePasswordView.swift in Sources */,
+				1A5A80E32BBF8BE400B99B39 /* AffiliateProgramView.swift in Sources */,
+				1A3BDDED2BD06A4A00881C7F /* PaymentProcessor.swift in Sources */,
+				1A495D2E2BC3E299008E7894 /* AddressSettingsView.swift in Sources */,
+				1AB168202BB11BAD00794F73 /* ContentView.swift in Sources */,
+				1A5FF2CE2BC03B9D00A845F0 /* BlogPost.swift in Sources */,
+				1A5A80E52BBF8C2700B99B39 /* AccountView.swift in Sources */,
+				1A5A80DF2BBF8AF800B99B39 /* WalletView.swift in Sources */,
+				1A50527E2BC36F7400A71F90 /* FlightBookingView.swift in Sources */,
+				1AB168222BB11BAD00794F73 /* Item.swift in Sources */,
+				1A3C0ED82BC1106F00D659FD /* CartView.swift in Sources */,
+				1A5052802BC36FC900A71F90 /* SendMoneyview.swift in Sources */,
+				1A495D1E2BC3E020008E7894 /* FlightBookingSettingsView.swift in Sources */,
+				1A5FF2CB2BC03B0C00A845F0 /* Technology.swift in Sources */,
+				1A495D282BC3E193008E7894 /* AdvancedSettingsView.swift in Sources */,
+				1AB1681E2BB11BAD00794F73 /* EcoSphereExchangeApp.swift in Sources */,
+				1A50527C2BC36F1200A71F90 /* HotelBookingView.swift in Sources */,
+				1A3BDDEF2BD06C7100881C7F /* CheckoutView.swift in Sources */,
+				1A5FF2C82BC0379A00A845F0 /* MarketViews.swift in Sources */,
+				1A7EB4C62BD4BC140022F79B /* PaymentButton.swift in Sources */,
+				1A495D242BC3E0EB008E7894 /* MoneyTransferSettingsView.swift in Sources */,
+				1A5A80E12BBF8B7D00B99B39 /* GeneralSettingsView.swift in Sources */,
+				1A5052782BC2F78400A71F90 /* AffiliateSignupView.swift in Sources */,
+				1A2EF7E72BC4FE64005ADD7B /* FlightSearchEngine.swift in Sources */,
+				1A495D202BC3E063008E7894 /* ECommerceSettingsView.swift in Sources */,
+				1A495D2A2BC3E215008E7894 /* NotificationSettingsView.swift in Sources */,
+				1A38183D2BC19609002E1803 /* CartItem.swift in Sources */,
+				1A5A80DB2BBF898E00B99B39 /* UserInfoView.swift in Sources */,
+				1A4C20792BD2D7630011DEA6 /* UserService.swift in Sources */,
+				1A495D222BC3E0A2008E7894 /* TaxiSettingsView.swift in Sources */,
+				1A495D2C2BC3E24A008E7894 /* PrivacySettingsView.swift in Sources */,
+				1A5052822BC3707900A71F90 /* Gamesview.swift in Sources */,
+				1A4C207B2BD2D7A10011DEA6 /* LoginView.swift in Sources */,
+				1A5052762BC2EFA000A71F90 /* UserSession.swift in Sources */,
+				1A522CA32BC43CF0005EB96C /* PaymentInfoView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1AB168282BB11BAF00794F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1AB168292BB11BAF00794F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1AB1682B2BB11BAF00794F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EcoSphereExchange/Preview Content\"";
+				DEVELOPMENT_TEAM = PTK6F4X8CR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "EcoSphere Ex";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = VividVentures.EcoSphereExchange;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1AB1682C2BB11BAF00794F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EcoSphereExchange/Preview Content\"";
+				DEVELOPMENT_TEAM = PTK6F4X8CR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "EcoSphere Ex";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = VividVentures.EcoSphereExchange;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1AB168152BB11BAD00794F73 /* Build configuration list for PBXProject "EcoSphereExchange" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AB168282BB11BAF00794F73 /* Debug */,
+				1AB168292BB11BAF00794F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AB1682A2BB11BAF00794F73 /* Build configuration list for PBXNativeTarget "EcoSphereExchange" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AB1682B2BB11BAF00794F73 /* Debug */,
+				1AB1682C2BB11BAF00794F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A3C0ED32BC0E38C00D659FD /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A3C0ED42BC0E38C00D659FD /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A3C0ED32BC0E38C00D659FD /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1AB168122BB11BAD00794F73 /* Project object */;
+}

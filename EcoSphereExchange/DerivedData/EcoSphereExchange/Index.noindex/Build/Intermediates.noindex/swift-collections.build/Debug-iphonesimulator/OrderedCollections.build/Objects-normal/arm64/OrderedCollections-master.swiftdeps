@@ -1,0 +1,127 @@
+version: "Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)"
+options: "42e94ae20ccf372ad150ef0ef7f777e124637cbaedb1f13eb4c5e09766f81a57"
+build_start_time: [1712370223, 781291000]
+build_end_time: [1712370230, 903402000]
+inputs:
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/HashTable/_HashTable+Bucket.swift"
+  : [1712368644, 83691683]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/HashTable/_HashTable+BucketIterator.swift"
+  : [1712368644, 83777389]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/HashTable/_HashTable+Constants.swift"
+  : [1712368644, 83977968]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/HashTable/_HashTable+CustomStringConvertible.swift"
+  : [1712368644, 84061841]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/HashTable/_HashTable+Testing.swift"
+  : [1712368644, 84129131]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/HashTable/_HashTable+UnsafeHandle.swift"
+  : [1712368644, 84209254]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/HashTable/_HashTable.swift"
+  : [1712368644, 84303210]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/HashTable/_Hashtable+Header.swift"
+  : [1712368644, 84393542]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Codable.swift"
+  : [1712368644, 84959529]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+CustomReflectable.swift"
+  : [1712368644, 85036985]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Deprecations.swift"
+  : [1712368644, 85108692]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Descriptions.swift"
+  : [1712368644, 85173066]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Elements.SubSequence.swift"
+  : [1712368644, 85255189]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Elements.swift"
+  : [1712368644, 85329729]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Equatable.swift"
+  : [1712368644, 85421102]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+ExpressibleByDictionaryLiteral.swift"
+  : [1712368644, 85489850]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Hashable.swift"
+  : [1712368644, 85554390]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Initializers.swift"
+  : [1712368644, 85628472]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Invariants.swift"
+  : [1712368644, 85713261]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Partial MutableCollection.swift"
+  : [1712368644, 85977089]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Partial RangeReplaceableCollection.swift"
+  : [1712368644, 86078461]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Sendable.swift"
+  : [1712368644, 86156835]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Sequence.swift"
+  : [1712368644, 86226875]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Values.swift"
+  : [1712368644, 86292415]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary.swift"
+  : [1712368644, 86374538]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Codable.swift"
+  : [1712368644, 87373349]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+CustomReflectable.swift"
+  : [1712368644, 87452972]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Descriptions.swift"
+  : [1712368644, 87518304]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Diffing.swift"
+  : [1712368644, 87596344]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Equatable.swift"
+  : [1712368644, 87680133]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+ExpressibleByArrayLiteral.swift"
+  : [1712368644, 87743299]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Hashable.swift"
+  : [1712368644, 87806880]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Initializers.swift"
+  : [1712368644, 87884087]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Insertions.swift"
+  : [1712368644, 87976460]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Invariants.swift"
+  : [1712368644, 88036542]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial MutableCollection.swift"
+  : [1712368644, 88095957]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial RangeReplaceableCollection.swift"
+  : [1712368644, 88182247]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra formIntersection.swift"
+  : [1712368644, 88280078]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra formSymmetricDifference.swift"
+  : [1712368644, 88367826]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra formUnion.swift"
+  : [1712368644, 88447699]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra intersection.swift"
+  : [1712368644, 88516364]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra isDisjoint.swift"
+  : [1712368644, 88610904]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra isEqualSet.swift"
+  : [1712368644, 88697152]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra isStrictSubset.swift"
+  : [1712368644, 88778983]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra isStrictSuperset.swift"
+  : [1712368644, 88853940]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra isSubset.swift"
+  : [1712368644, 88947146]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra isSuperset.swift"
+  : [1712368644, 89027978]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra subtract.swift"
+  : [1712368644, 89101892]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra subtracting.swift"
+  : [1712368644, 89177516]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra symmetricDifference.swift"
+  : [1712368644, 89266472]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra union.swift"
+  : [1712368644, 89336054]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra+Basics.swift"
+  : [1712368644, 89410010]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+RandomAccessCollection.swift"
+  : [1712368644, 89495050]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+ReserveCapacity.swift"
+  : [1712368644, 89590548]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Sendable.swift"
+  : [1712368644, 89652963]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+SubSequence.swift"
+  : [1712368644, 89734545]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Testing.swift"
+  : [1712368644, 89813334]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+UnorderedView.swift"
+  : [1712368644, 89893666]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet+UnstableInternals.swift"
+  : [1712368644, 90202492]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/OrderedSet/OrderedSet.swift"
+  : [1712368644, 90295282]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/OrderedCollections/Utilities/_UnsafeBitset.swift"
+  : [1712368644, 90642566]

@@ -1,0 +1,12 @@
+{
+  "" : {
+    "dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphoneos/Collections.build/Objects-normal/arm64/Collections-master.d",
+    "diagnostics" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphoneos/Collections.build/Objects-normal/arm64/Collections-master.dia",
+    "emit-module-dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphoneos/Collections.build/Objects-normal/arm64/Collections-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphoneos/Collections.build/Objects-normal/arm64/Collections-master-emit-module.dia",
+    "swift-dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/swift-collections.build/Debug-iphoneos/Collections.build/Objects-normal/arm64/Collections-master.swiftdeps"
+  },
+  "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/Collections/Collections.swift" : {
+
+  }
+}

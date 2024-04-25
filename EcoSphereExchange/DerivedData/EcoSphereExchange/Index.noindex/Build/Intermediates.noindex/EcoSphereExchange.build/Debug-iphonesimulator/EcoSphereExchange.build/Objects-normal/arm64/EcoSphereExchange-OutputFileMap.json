@@ -1,0 +1,51 @@
+{
+  "" : {
+    "dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/EcoSphereExchange.build/Debug-iphonesimulator/EcoSphereExchange.build/Objects-normal/arm64/EcoSphereExchange-master.d",
+    "diagnostics" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/EcoSphereExchange.build/Debug-iphonesimulator/EcoSphereExchange.build/Objects-normal/arm64/EcoSphereExchange-master.dia",
+    "emit-module-dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/EcoSphereExchange.build/Debug-iphonesimulator/EcoSphereExchange.build/Objects-normal/arm64/EcoSphereExchange-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/EcoSphereExchange.build/Debug-iphonesimulator/EcoSphereExchange.build/Objects-normal/arm64/EcoSphereExchange-master-emit-module.dia",
+    "swift-dependencies" : "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/EcoSphereExchange.build/Debug-iphonesimulator/EcoSphereExchange.build/Objects-normal/arm64/EcoSphereExchange-master.swiftdeps"
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/DerivedData/EcoSphereExchange/Index.noindex/Build/Intermediates.noindex/EcoSphereExchange.build/Debug-iphonesimulator/EcoSphereExchange.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Account/AccountView.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Account/AffiliateProgramView.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Account/BillingInfoView.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Account/ChangePasswordView.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Account/GeneralSettingsView.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Account/UserInfoView.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Account/WalletView.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Blog/BlogPost.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/EcoSphereExchangeApp.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Item.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Market/MarketViews.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Technology/Technology.swift" : {
+
+  },
+  "/Users/mahmmudabdolaziz/Documents/GitHub/main/EcoSphereExchange/EcoSphereExchange/Views/ContentView.swift" : {
+
+  }
+}

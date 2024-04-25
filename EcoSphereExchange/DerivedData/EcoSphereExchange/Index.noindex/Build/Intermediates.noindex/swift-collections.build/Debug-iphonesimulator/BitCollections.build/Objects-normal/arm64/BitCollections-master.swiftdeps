@@ -1,0 +1,123 @@
+version: "Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)"
+options: "166f8a6d9d69b5b345c9ea38f7b1c6f6eff6e33da068c1442887b391a667cddb"
+build_start_time: [1712370224, 11399000]
+build_end_time: [1712370230, 904672000]
+inputs:
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+BitwiseOperations.swift"
+  : [1712368644, 63182110]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+ChunkedBitsIterators.swift"
+  : [1712368644, 63261317]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Codable.swift"
+  : [1712368644, 63338190]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Collection.swift"
+  : [1712368644, 63442646]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Copy.swift"
+  : [1712368644, 63540685]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+CustomReflectable.swift"
+  : [1712368644, 63634267]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Descriptions.swift"
+  : [1712368644, 63707140]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Equatable.swift"
+  : [1712368644, 63787888]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+ExpressibleByArrayLiteral.swift"
+  : [1712368644, 63885636]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+ExpressibleByStringLiteral.swift"
+  : [1712368644, 63951509]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Extras.swift"
+  : [1712368644, 64020383]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Fill.swift"
+  : [1712368644, 64093089]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Hashable.swift"
+  : [1712368644, 64194254]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Initializers.swift"
+  : [1712368644, 64275002]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Invariants.swift"
+  : [1712368644, 64344834]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+LosslessStringConvertible.swift"
+  : [1712368644, 64424957]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+RandomBits.swift"
+  : [1712368644, 64508497]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+RangeReplaceableCollection.swift"
+  : [1712368644, 64588370]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Shifts.swift"
+  : [1712368644, 64680493]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray+Testing.swift"
+  : [1712368644, 64751866]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray._UnsafeHandle.swift"
+  : [1712368644, 64842031]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitArray/BitArray.swift"
+  : [1712368644, 64915987]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+BidirectionalCollection.swift"
+  : [1712368644, 65410684]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+Codable.swift"
+  : [1712368644, 65487766]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+CustomDebugStringConvertible.swift"
+  : [1712368644, 65582222]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+CustomReflectable.swift"
+  : [1712368644, 65649179]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+CustomStringConvertible.swift"
+  : [1712368644, 65717177]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+Equatable.swift"
+  : [1712368644, 65816383]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+ExpressibleByArrayLiteral.swift"
+  : [1712368644, 66012796]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+Extras.swift"
+  : [1712368644, 66265915]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+Hashable.swift"
+  : [1712368644, 66332746]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+Initializers.swift"
+  : [1712368644, 66413453]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+Invariants.swift"
+  : [1712368644, 66486618]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+Random.swift"
+  : [1712368644, 66578408]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra basics.swift"
+  : [1712368644, 66659406]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra conformance.swift"
+  : [1712368644, 66722946]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra formIntersection.swift"
+  : [1712368644, 66810611]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra formSymmetricDifference.swift"
+  : [1712368644, 66907108]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra formUnion.swift"
+  : [1712368644, 66983815]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra intersection.swift"
+  : [1712368644, 67066563]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra isDisjoint.swift"
+  : [1712368644, 67144103]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra isEqualSet.swift"
+  : [1712368644, 67233809]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra isStrictSubset.swift"
+  : [1712368644, 67344182]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra isStrictSuperset.swift"
+  : [1712368644, 67417222]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra isSubset.swift"
+  : [1712368644, 67501970]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra isSuperset.swift"
+  : [1712368644, 67588551]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra subtract.swift"
+  : [1712368644, 67769672]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra subtracting.swift"
+  : [1712368644, 67856420]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra symmetricDifference.swift"
+  : [1712368644, 68103164]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+SetAlgebra union.swift"
+  : [1712368644, 68165371]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet+Sorted Collection APIs.swift"
+  : [1712368644, 68251328]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet.Counted.swift"
+  : [1712368644, 68327659]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet.Index.swift"
+  : [1712368644, 68729858]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet._UnsafeHandle.swift"
+  : [1712368644, 68803482]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/BitSet/BitSet.swift"
+  : [1712368644, 68886313]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/Shared/Range+Utilities.swift"
+  : [1712368644, 69177265]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/Shared/Slice+Utilities.swift"
+  : [1712368644, 69244555]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/Shared/UInt+Tricks.swift"
+  : [1712368644, 69309553]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/BitCollections/Shared/_Word.swift"
+  : [1712368644, 69373302]

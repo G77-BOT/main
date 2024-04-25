@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)"
+options: "272bc262c4a90f052aaedf3fa5528d90102f0ad94642c5ca5a405d2b0a7e1ab9"
+build_start_time: [1712370228, 492156000]
+build_end_time: [1712370230, 883857000]
+inputs:
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/Collections/Collections.swift"
+  : [1712368644, 70859393]

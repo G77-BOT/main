@@ -55,9 +55,10 @@ struct FlightBookingView: View {
     }
     
     private func searchFlights() {
-        // Implement flight search algorithm here
-        // Replace the code below with your actual implementation
+        // Simulate flight search with AI algorithm
+        // Replace with actual implementation
         
+        // Simulating flights found
         flights = [
             Flight(airline: "Airline A", origin: "Origin A", destination: "Destination A", departureDate: departureDate, returnDate: returnDate),
             Flight(airline: "Airline B", origin: "Origin B", destination: "Destination B", departureDate: departureDate, returnDate: returnDate),

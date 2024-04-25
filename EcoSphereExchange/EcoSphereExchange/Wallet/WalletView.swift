@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct Transaction: Identifiable {
     let id: String
@@ -37,6 +36,8 @@ struct WalletView: View {
     @State private var isLoading: Bool = false
     @State private var currentPage: Int = 1
     @State private var selectedMiniProgram: MiniProgram?
+    @State private var isHotelBookingPresented = false
+    @State private var isSendMoneyPresented = false
     
     var body: some View {
         NavigationView {
@@ -62,11 +63,11 @@ struct WalletView: View {
                 case .callTaxi:
                     CallTaxiView()
                 case .hotelBooking:
-                    HotelBookingView()
+                    HotelBookingView(isPresented: $isHotelBookingPresented)
                 case .flightBooking:
                     FlightBookingView()
                 case .sendMoney:
-                    SendMoneyView()
+                    SendMoneyView(isPresented: $isSendMoneyPresented)
                 case .games:
                     GamesView()
                 }
@@ -127,79 +128,85 @@ extension DateFormatter {
     }()
 }
 
-enum MiniProgram: String, Identifiable {
-    case callTaxi
-    case hotelBooking
-    case flightBooking
-    case sendMoney
-    case games
+enum MiniProgram: String, Identifiable, CaseIterable {
+    case callTaxi = "Call Taxi"
+    case hotelBooking = "Hotel Booking"
+    case flightBooking = "Flight Booking"
+    case sendMoney = "Send Money"
+    case games = "Games"
     
     var id: String { self.rawValue }
+    
+    var iconName: String {
+        switch self {
+        case .callTaxi:
+            return "car.fill"
+        case .hotelBooking:
+            return "building.fill"
+        case .flightBooking:
+            return "airplane"
+        case .sendMoney:
+            return "arrow.left.arrow.right.square.fill"
+        case .games:
+            return "gamecontroller.fill"
+        }
+    }
 }
 
 struct MiniProgramsView: View {
     @Binding var selectedMiniProgram: MiniProgram?
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
             Text("Mini Programs")
-                .font(.headline)
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(.primary)
             
-            Button(action: {
-                selectedMiniProgram = .callTaxi
-            }) {
-                Text("Call Taxi")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-            
-            Button(action: {
-                selectedMiniProgram = .hotelBooking
-            }) {
-                Text("Hotel Booking")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(8)
-            }
-            
-            Button(action: {
-                selectedMiniProgram = .flightBooking
-            }) {
-                Text("Flight Booking")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.orange)
-                    .cornerRadius(8)
-            }
-            
-            Button(action: {
-                selectedMiniProgram = .sendMoney
-            }) {
-                Text("Send Money")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.purple)
-                    .cornerRadius(8)
-            }
-            
-            Button(action: {
-                selectedMiniProgram = .games
-            }) {
-                Text("Games")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.red)
-                    .cornerRadius(8)
+            ForEach(MiniProgram.allCases, id: \.self) { program in
+                Button(action: {
+                    selectedMiniProgram = program
+                }) {
+                    HStack {
+                        Image(systemName: program.iconName)
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .background(program.color)
+                            .clipShape(Circle())
+                        
+                        Text(program.rawValue)
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "arrow.right")
+                            .foregroundColor(.primary)
+                            .font(.headline)
+                            .padding(.trailing, 10)
+                    }
+                }
             }
         }
         .padding()
     }
 }
 
-
-
-
-
+extension MiniProgram {
+    var color: Color {
+        switch self {
+        case .callTaxi:
+            return Color.blue
+        case .hotelBooking:
+            return Color.green
+        case .flightBooking:
+            return Color.orange
+        case .sendMoney:
+            return Color.purple
+        case .games:
+            return Color.red
+        }
+    }
+}

@@ -5,7 +5,11 @@
 //  Created by mahmmud abdolaziz on 2024-04-07.
 //
 
+
 import SwiftUI
+import Combine
+
+// MARK: - GameType Enum
 
 enum GameType: String, Identifiable {
     case cards
@@ -26,68 +30,90 @@ enum GameType: String, Identifiable {
     }
 }
 
+// MARK: - GamesView
+
 struct GamesView: View {
     @State private var selectedGame: GameType?
     
     let games: [GameType] = [.cards, .candy, .dice]
     
     var body: some View {
-        VStack {
-            Text("Games View")
-                .font(.headline)
-            ForEach(games) { game in
-                Button(action: {
-                    selectedGame = game
-                }) {
+        NavigationView {
+            List(games) { game in
+                NavigationLink(destination: gameView(for: game)) {
                     Text(game.title)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(8)
                 }
             }
-            .sheet(item: $selectedGame) { game in
-                switch game {
-                case .cards:
-                    CardsGameView()
-                case .candy:
-                    CandyGameView()
-                case .dice:
-                    DiceGameView()
-                }
-            }
+            .navigationBarTitle("Games")
         }
-        .padding()
+    }
+    
+    private func gameView(for game: GameType) -> some View {
+        switch game {
+        case .cards:
+            return AnyView(CardsGameView())
+        case .candy:
+            return AnyView(CandyGameView())
+        case .dice:
+            return AnyView(DiceGameView())
+        }
     }
 }
+
+// MARK: - CardsGameView
 
 struct CardsGameView: View {
     @State private var cards: [Card] = Card.generateDeck()
     @State private var score: Int = 0
+    @State private var isTimerRunning: Bool = false
+    @State private var timeRemaining: Int = 60
+    @State private var showAlert: Bool = false
+    @State private var isShuffling: Bool = false // New state for shuffling animation
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
             Text("Cards Game")
-                .font(.headline)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding()
+            
             Spacer()
+            
             Text("Score: \(score)")
                 .font(.title)
+            
             Spacer()
-            HStack {
-                ForEach(cards) { card in
-                    Button(action: {
-                        flipCard(card)
-                    }) {
+            
+            TimerView(timeRemaining: timeRemaining)
+            
+            Spacer()
+            
+            if !isShuffling {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 20), count: 4), spacing: 20) {
+                    ForEach(cards) { card in
                         CardView(card: card)
-                            .frame(width: 80, height: 120)
+                            .onTapGesture {
+                                flipCard(card)
+                            }
+                            .aspectRatio(2/3, contentMode: .fit)
                     }
                 }
+                .padding()
+            } else {
+                Text("Shuffling...")
+                    .font(.title)
+                    .foregroundColor(.blue)
             }
+            
             Spacer()
+            
             Button(action: {
                 resetGame()
             }) {
                 Text("Reset")
+                    .font(.headline)
                     .foregroundColor(.white)
                     .padding()
                     .background(Color.blue)
@@ -95,6 +121,21 @@ struct CardsGameView: View {
             }
         }
         .padding()
+        .onReceive(timer) { _ in
+            guard isTimerRunning else { return }
+            
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            } else {
+                endGame()
+            }
+        }
+        .onAppear {
+            startGame()
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Game Over"), message: Text("Your final score is \(score)"), dismissButton: .default(Text("Play Again"), action: resetGame))
+        }
     }
     
     private func flipCard(_ card: Card) {
@@ -121,8 +162,244 @@ struct CardsGameView: View {
     private func resetGame() {
         cards = Card.generateDeck()
         score = 0
+        startGame()
+    }
+    
+    private func startGame() {
+        isTimerRunning = true
+        timeRemaining = 60
+    }
+    
+    private func endGame() {
+        isTimerRunning = false
+        showAlert = true
     }
 }
+
+// MARK: - CandyGameView
+
+struct CandyGameView: View {
+    @State private var candies: [Candy] = Candy.generateCandies()
+    @State private var score: Int = 0
+    @State private var isTimerRunning: Bool = false
+    @State private var timeRemaining: Int = 60
+    @State private var showAlert: Bool = false
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var body: some View {
+        VStack {
+            Text("Candy Game")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding()
+            
+            Spacer()
+            
+            Text("Score: \(score)")
+                .font(.title)
+            
+            Spacer()
+            
+            TimerView(timeRemaining: timeRemaining)
+            
+            Spacer()
+            
+            GridView(items: candies, columns: 4) { candy in
+                CandyView(candy: candy)
+                    .onTapGesture {
+                        eatCandy(candy)
+                    }
+            }
+            .padding()
+            
+            Spacer()
+            
+            Button(action: {
+                resetGame()
+            }) {
+                Text("Reset")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(8)
+            }
+        }
+        .padding()
+        .onReceive(timer) { _ in
+            guard isTimerRunning else { return }
+            
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            } else {
+                endGame()
+            }
+        }
+        .onAppear {
+            startGame()
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Game Over"), message: Text("Your final score is \(score)"), dismissButton: .default(Text("Play Again"), action: resetGame))
+        }
+    }
+    
+    private func eatCandy(_ candy: Candy) {
+        guard let candyIndex = candies.firstIndex(where: { $0.id == candy.id }) else { return }
+        
+        candies.remove(at: candyIndex)
+        
+        score += candy.points
+    }
+
+    
+    private func resetGame() {
+        candies = Candy.generateCandies()
+        score = 0
+        startGame()
+    }
+    
+    private func startGame() {
+        isTimerRunning = true
+        timeRemaining = 60
+    }
+    
+    private func endGame() {
+        isTimerRunning = false
+        showAlert = true
+    }
+}
+
+// MARK: - DiceGameView
+
+struct DiceGameView: View {
+    @State private var diceValues: [Int] = [1, 1, 1, 1, 1]
+    @State private var score: Int = 0
+    @State private var isTimerRunning: Bool = false
+    @State private var timeRemaining: Int = 60
+    @State private var showAlert: Bool = false
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var body: some View {
+        VStack {
+            Text("Dice Game")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding()
+            
+            Spacer()
+            
+            Text("Score: \(score)")
+                .font(.title)
+            
+            Spacer()
+            
+            TimerView(timeRemaining: timeRemaining)
+            
+            Spacer()
+            
+            HStack(spacing: 20) {
+                ForEach(diceValues, id: \.self) { value in
+                    Image(systemName: "die.face.\(value).fill")
+                        .font(.system(size: 80))
+                }
+            }
+            
+            Spacer()
+            
+            Button(action: {
+                rollDice()
+            }) {
+                Text("Roll Dice")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(8)
+            }
+        }
+        .padding()
+        .onReceive(timer) { _ in
+            guard isTimerRunning else { return }
+            
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            } else {
+                endGame()
+            }
+        }
+        .onAppear {
+            startGame()
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Game Over"), message: Text("Your final score is \(score)"), dismissButton: .default(Text("Play Again"), action: resetGame))
+        }
+    }
+    
+    private func rollDice() {
+        diceValues = (1...5).map { _ in Int.random(in: 1...6) }
+        
+        score = diceValues.reduce(0, +)
+    }
+    
+    private func startGame() {
+        isTimerRunning = true
+        timeRemaining = 60
+    }
+    
+    private func resetGame() {
+        score = 0
+        startGame()
+    }
+    
+    private func endGame() {
+        isTimerRunning = false
+        showAlert = true
+    }
+}
+
+// MARK: - TimerView
+
+struct TimerView: View {
+    let timeRemaining: Int
+    
+    var body: some View {
+        Text("Time: \(timeRemaining)")
+            .font(.headline)
+            .padding()
+            .background(Color.gray)
+            .cornerRadius(10)
+            .foregroundColor(.white)
+    }
+}
+
+// MARK: - Grid View Component
+
+struct GridView<Item, Content>: View where Item: Identifiable, Content: View {
+    private let items: [Item]
+    private let columns: Int
+    private let content: (Item) -> Content
+    
+    init(items: [Item], columns: Int, @ViewBuilder content: @escaping (Item) -> Content) {
+        self.items = items
+        self.columns = columns
+        self.content = content
+    }
+    
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 10) {
+                ForEach(items) { item in
+                    content(item)
+                }
+            }
+            .padding(.horizontal, 16)
+        }
+    }
+}
+
+// MARK: - Model
 
 struct Card: Identifiable {
     let id = UUID()
@@ -140,6 +417,22 @@ struct Card: Identifiable {
         }
         
         return deck.shuffled()
+    }
+}
+
+struct Candy: Identifiable {
+    let id = UUID()
+    let name: String
+    let image: String
+    let points: Int
+    
+    static func generateCandies() -> [Candy] {
+        return [
+            Candy(name: "Chocolate Bar", image: "chocolate", points: 10),
+            Candy(name: "Candy Cane", image: "candycane", points: 5),
+            Candy(name: "Lollipop", image: "lollipop", points: 8),
+            // Add more candy types here
+        ]
     }
 }
 
@@ -166,74 +459,6 @@ struct CardView: View {
     }
 }
 
-struct CandyGameView: View {
-    @State private var candies: [Candy] = Candy.generateCandies()
-    @State private var score: Int = 0
-    
-    var body: some View {
-        VStack {
-            Text("Candy Game")
-                .font(.headline)
-            Spacer()
-            Text("Score: \(score)")
-                .font(.title)
-            Spacer()
-            GridView(items: candies, columns: 4) { candy in
-                CandyView(candy: candy)
-                    .onTapGesture {
-                        eatCandy(candy)
-                    }
-            }
-            Spacer()
-            Button(action: {
-                resetGame()
-            }) {
-                Text("Reset")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-        }
-        .padding()
-    }
-    
-    private func eatCandy(_ candy: Candy) {
-        guard let candyIndex = candies.firstIndex(where: { $0.id == candy.id }) else { return }
-        
-        withAnimation {
-            candies.remove(at: candyIndex)
-        }
-        
-        score += candy.points
-    }
-    
-    private func resetGame() {
-        candies = Candy.generateCandies()
-        score = 0
-    }
-}
-
-struct Candy: Identifiable {
-    let id = UUID()
-    let name: String
-    let image: String
-    let points: Int
-    
-    static func generateCandies() -> [Candy] {
-        return [
-            Candy(name: "Chocolate Bar", image: "chocolate", points: 10),
-            Candy(name: "Candy Cane", image: "candycane", points: 5),
-            Candy(name: "Lollipop", image: "lollipop", points: 8),
-            Candy(name: "Gummy Bear", image: "gummybear", points: 7),
-            Candy(name: "Caramel", image: "caramel", points: 6),
-            Candy(name: "Jelly Bean", image: "jellybean", points: 4),
-            Candy(name: "Licorice", image: "licorice", points: 3),
-            Candy(name: "Sour Patch", image: "sourpatch", points: 9),
-        ]
-    }
-}
-
 struct CandyView: View {
     let candy: Candy
     
@@ -254,69 +479,13 @@ struct CandyView: View {
     }
 }
 
-struct DiceGameView: View {
-    @State private var diceValues: [Int] = [1, 1, 1, 1, 1]
-    @State private var score: Int = 0
-    
-    var body: some View {
-        VStack {
-            Text("Dice Game")
-                .font(.headline)
-            Spacer()
-            Text("Score: \(score)")
-                .font(.title)
-            Spacer()
-            HStack {
-                ForEach(diceValues, id: \.self) { value in
-                    Image(systemName: "die.face.\(value).fill")
-                        .font(.system(size: 80))
-                }
-            }
-            Spacer()
-            Button(action: {
-                rollDice()
-            }) {
-                Text("Roll Dice")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-        }
-        .padding()
-    }
-    
-    private func rollDice() {
-        diceValues = (1...5).map { _ in Int.random(in: 1...6) }
-        
-        score = diceValues.reduce(0, +)
-    }
-}
+// MARK: - App
 
-struct GridView<Item, Content>: View where Item: Identifiable, Content: View {
-    private let items: [Item]
-    private let columns: Int
-    private let content: (Item) -> Content
-    
-    init(items: [Item], columns: Int, @ViewBuilder content: @escaping (Item) -> Content) {
-        self.items = items
-        self.columns = columns
-        self.content = content
-    }
-    
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: gridLayout, spacing: 16) {
-                ForEach(items) { item in
-                    content(item)
-                }
-            }
-            .padding(.horizontal, 16)
+
+struct GameApp: App {
+    var body: some Scene {
+        WindowGroup {
+            GamesView()
         }
     }
-    
-    private var gridLayout: [GridItem] {
-        Array(repeating: GridItem(.flexible(), spacing: 16), count: columns)
-    }
 }
-

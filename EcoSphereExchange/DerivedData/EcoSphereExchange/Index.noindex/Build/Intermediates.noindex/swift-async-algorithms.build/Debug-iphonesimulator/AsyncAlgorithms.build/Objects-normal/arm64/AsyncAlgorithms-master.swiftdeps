@@ -1,0 +1,103 @@
+version: "Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)"
+options: "1938e045c76ba367f76eaa3dd343534e7a4b61140e50967ef78e1fb96b8bd2cc"
+build_start_time: [1712370228, 912318000]
+build_end_time: [1712370230, 902497000]
+inputs:
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncAdjacentPairsSequence.swift"
+  : [1712368643, 853291410]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncBufferedByteIterator.swift"
+  : [1712368643, 855041995]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncChain2Sequence.swift"
+  : [1712368643, 855103911]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncChain3Sequence.swift"
+  : [1712368643, 855166618]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncChunkedByGroupSequence.swift"
+  : [1712368643, 855244574]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncChunkedOnProjectionSequence.swift"
+  : [1712368643, 855321989]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncChunksOfCountOrSignalSequence.swift"
+  : [1712368643, 855396237]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncChunksOfCountSequence.swift"
+  : [1712368643, 855455361]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncCompactedSequence.swift"
+  : [1712368643, 855527068]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncExclusiveReductionsSequence.swift"
+  : [1712368643, 855602608]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncInclusiveReductionsSequence.swift"
+  : [1712368643, 855702022]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncJoinedBySeparatorSequence.swift"
+  : [1712368643, 855783395]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncJoinedSequence.swift"
+  : [1712368643, 855842394]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncRemoveDuplicatesSequence.swift"
+  : [1712368643, 855923059]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncSyncSequence.swift"
+  : [1712368643, 855991182]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncThrottleSequence.swift"
+  : [1712368643, 856072472]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncThrowingExclusiveReductionsSequence.swift"
+  : [1712368643, 856142137]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncThrowingInclusiveReductionsSequence.swift"
+  : [1712368643, 856209052]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/AsyncTimerSequence.swift"
+  : [1712368643, 856279717]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Buffer/AsyncBufferSequence.swift"
+  : [1712368643, 856400464]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Buffer/BoundedBufferStateMachine.swift"
+  : [1712368643, 856481629]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Buffer/BoundedBufferStorage.swift"
+  : [1712368643, 856589877]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Buffer/UnboundedBufferStateMachine.swift"
+  : [1712368643, 856681375]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Buffer/UnboundedBufferStorage.swift"
+  : [1712368643, 856752915]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Channels/AsyncChannel.swift"
+  : [1712368643, 856867662]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Channels/AsyncThrowingChannel.swift"
+  : [1712368643, 856926869]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Channels/ChannelStateMachine.swift"
+  : [1712368643, 857007617]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Channels/ChannelStorage.swift"
+  : [1712368643, 857099907]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/CombineLatest/AsyncCombineLatest2Sequence.swift"
+  : [1712368643, 857210029]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/CombineLatest/AsyncCombineLatest3Sequence.swift"
+  : [1712368643, 857380692]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/CombineLatest/CombineLatestStateMachine.swift"
+  : [1712368643, 857536938]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/CombineLatest/CombineLatestStorage.swift"
+  : [1712368643, 858027719]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Debounce/AsyncDebounceSequence.swift"
+  : [1712368643, 858138883]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Debounce/DebounceStateMachine.swift"
+  : [1712368643, 858270797]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Debounce/DebounceStorage.swift"
+  : [1712368643, 858655996]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Dictionary.swift"
+  : [1712368643, 858758535]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Interspersed/AsyncInterspersedSequence.swift"
+  : [1712368643, 858864783]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Locking.swift"
+  : [1712368643, 859226108]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Merge/AsyncMerge2Sequence.swift"
+  : [1712368643, 859346480]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Merge/AsyncMerge3Sequence.swift"
+  : [1712368643, 859414021]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Merge/MergeStateMachine.swift"
+  : [1712368643, 859516018]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Merge/MergeStorage.swift"
+  : [1712368643, 859619932]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/RangeReplaceableCollection.swift"
+  : [1712368643, 859688431]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Rethrow.swift"
+  : [1712368643, 859757804]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/SetAlgebra.swift"
+  : [1712368643, 859824886]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Zip/AsyncZip2Sequence.swift"
+  : [1712368643, 859923759]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Zip/AsyncZip3Sequence.swift"
+  : [1712368643, 859982924]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Zip/ZipStateMachine.swift"
+  : [1712368643, 860057714]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-async-algorithms/Sources/AsyncAlgorithms/Zip/ZipStorage.swift"
+  : [1712368643, 860160045]

@@ -5,4 +5,12 @@
 //  Created by mahmmud abdolaziz on 2024-04-15.
 //
 
-import Foundation
+import SwiftUI
+import SafariServices
+
+// View for displaying blog posts
+struct BlogView: View {
+    var body: some View {
+        // Display blog posts with links
+    }
+}

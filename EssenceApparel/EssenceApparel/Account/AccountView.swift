@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+
+// View for displaying account details
+struct AccountView: View {
+    var body: some View {
+        // Account details UI
+    }
+}

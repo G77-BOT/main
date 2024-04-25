@@ -1,0 +1,17 @@
+version: "Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)"
+options: "f2ec727e16e14b2c24a7cb8440868d4863e755921484d7cb17cca6b417bffb5d"
+build_start_time: [1712370223, 924273000]
+build_end_time: [1712370230, 899660000]
+inputs:
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/HeapModule/Heap+Descriptions.swift"
+  : [1712368644, 82702164]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/HeapModule/Heap+ExpressibleByArrayLiteral.swift"
+  : [1712368644, 82769621]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/HeapModule/Heap+Invariants.swift"
+  : [1712368644, 82838536]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/HeapModule/Heap+UnsafeHandle.swift"
+  : [1712368644, 82917784]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/HeapModule/Heap.swift"
+  : [1712368644, 83014157]
+  ? "/Users/mahmmudabdolaziz/Library/Developer/Xcode/DerivedData/EcoSphereExchange-bzpfszivjsnybrdebzyuyyjspwga/SourcePackages/checkouts/swift-collections/Sources/HeapModule/_HeapNode.swift"
+  : [1712368644, 83468313]

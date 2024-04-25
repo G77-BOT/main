@@ -7,156 +7,208 @@
 
 
 import SwiftUI
-import MapKit
-import CoreLocation
 
-struct TaxiAppView: View {
-    @Binding var isPresented: Bool
-    @State private var pickupLocation: CLLocationCoordinate2D?
-    @State private var dropOffLocation: CLLocationCoordinate2D?
-    @State private var selectedVehicleType: VehicleType = .standard
-    @State private var isBookingInProgress: Bool = false
-
-    var body: some View {
-        NavigationView {
-            VStack {
-                MapView(pickupLocation: $pickupLocation, dropOffLocation: $dropOffLocation)
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(height: 300)
-
-                VehicleTypePicker(selectedVehicleType: $selectedVehicleType)
-                    .padding()
-
-                EstimatedFareView(selectedVehicleType: selectedVehicleType)
-                    .padding()
-
-                BookRideButton(isBookingInProgress: $isBookingInProgress, onBookRide: bookRide)
-                    .padding()
-
-                Spacer()
-            }
-            .navigationTitle("Taxi App")
-        }
-    }
-
-    private func bookRide() {
-        // Implement booking logic
-    }
-}
-
-struct MapView: View {
-    @Binding var pickupLocation: CLLocationCoordinate2D?
-    @Binding var dropOffLocation: CLLocationCoordinate2D?
-
-    var body: some View {
-        let annotations = getAnnotations()
-        Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: annotations) { annotation in
-            MapPin(coordinate: annotation.coordinate, tint: annotation.tint)
-        }
-        .gesture(
-            DragGesture().onEnded { gesture in
-                let location = gesture.location
-                let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-
-                if pickupLocation == nil {
-                    pickupLocation = coordinate
-                } else if dropOffLocation == nil {
-                    dropOffLocation = coordinate
-                } else {
-                    pickupLocation = coordinate
-                    dropOffLocation = nil
-                }
-            }
-        )
-    }
-
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-    )
-
-    private let mapView = MKMapView()
-
-    private func getAnnotations() -> [Annotation] {
-        var annotations: [Annotation] = []
-
-        if let pickupLocation = pickupLocation {
-            annotations.append(Annotation(coordinate: pickupLocation, tint: .green))
-        }
-
-        if let dropOffLocation = dropOffLocation {
-            annotations.append(Annotation(coordinate: dropOffLocation, tint: .red))
-        }
-
-        return annotations
-    }
-
-    struct Annotation: Identifiable {
-        let id = UUID()
-        let coordinate: CLLocationCoordinate2D
-        let tint: Color
-    }
-}
-
-struct VehicleTypePicker: View {
-    @Binding var selectedVehicleType: VehicleType
-
-    var body: some View {
-        Picker("Select Vehicle Type", selection: $selectedVehicleType) {
-            ForEach(VehicleType.allCases, id: \.self) { vehicleType in
-                Text(vehicleType.rawValue.capitalized)
-                    .tag(vehicleType)
-            }
-        }
-        .pickerStyle(SegmentedPickerStyle())
-    }
-}
-
-struct EstimatedFareView: View {
-    var selectedVehicleType: VehicleType
-
+struct CallTaxiView: View {
+    @State private var driver: Driver?
+    @State private var rideStatus: RideStatus = .findingDriver
+    @State private var isCallButtonDisabled: Bool = false
+    
     var body: some View {
         VStack {
-            Text("Estimated Fare")
-                .font(.headline)
-
-            Text("\(selectedVehicleType.rawValue.capitalized) - $\(selectedVehicleType.estimatedFare, specifier: "%.2f")")
-                .font(.title)
-                .foregroundColor(.blue)
-        }
-    }
-}
-
-struct BookRideButton: View {
-    @Binding var isBookingInProgress: Bool
-    var onBookRide: () -> Void
-
-    var body: some View {
-        Button(action: onBookRide) {
-            if isBookingInProgress {
-                ProgressView()
+            Spacer()
+            
+            if rideStatus == .findingDriver {
+                ProgressView("Finding a Driver...")
                     .padding()
             } else {
-                Text("Book Ride")
+                if let driver = driver {
+                    DriverInfoView(driver: driver)
+                        .padding()
+                }
+                
+                EstimatedArrivalTimeView(estimatedArrivalTime: driver?.estimatedArrivalTime ?? 5)
                     .padding()
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                
+                Button(action: callDriver) {
+                    Text("Call Driver")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                        .opacity(isCallButtonDisabled ? 0.5 : 1.0)
+                }
+                .disabled(isCallButtonDisabled)
+                .padding()
+            }
+            
+            Spacer()
+        }
+        .background(Color.white)
+        .edgesIgnoringSafeArea(.all)
+        .onAppear {
+            integrateWithRideBookingServices()
+        }
+    }
+    
+    
+    
+    private func integrateWithRideBookingServices() {
+        // Simulate integrating with multiple ride booking services
+        
+        // Simulate finding a driver from Uber API
+        UberAPIManager.findDriver { result in
+            switch result {
+            case .success(let driver):
+                updateDriverInfo(driver)
+            case .failure(let error):
+                print("Error finding Uber driver: \(error.localizedDescription)")
+                // Handle error scenario
+            }
+        }
+        
+        // Simulate finding a driver from Lyft API
+        LyftAPIManager.findDriver { result in
+            switch result {
+            case .success(let driver):
+                updateDriverInfo(driver)
+            case .failure(let error):
+                print("Error finding Lyft driver: \(error.localizedDescription)")
+                // Handle error scenario
+            }
+        }
+        
+        // Simulate finding a driver from Taxi Company API
+        TaxiCompanyAPIManager.findDriver { result in
+            switch result {
+            case .success(let driver):
+                updateDriverInfo(driver)
+            case .failure(let error):
+                print("Error finding taxi company driver: \(error.localizedDescription)")
+                // Handle error scenario
             }
         }
     }
+    
+    private func callDriver() {
+        guard let phoneNumber = driver?.phoneNumber,
+              let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return
+        }
+        
+        let activityViewController = UIActivityViewController(activityItems: [phoneNumber], applicationActivities: nil)
+        window.rootViewController?.present(activityViewController, animated: true, completion: nil)
+    }
+
+
+    private func updateDriverInfo(_ driver: Driver) {
+        self.driver = driver
+        rideStatus = .driverFound
+    }
 }
 
-enum VehicleType: String, CaseIterable {
-    case standard
-    case premium
-
-    var estimatedFare: Double {
-        switch self {
-        case .standard:
-            return 25.0
-        case .premium:
-            return 40.0
+// Simulated Uber API Manager
+struct UberAPIManager {
+    static func findDriver(completion: @escaping (Result<Driver, Error>) -> Void) {
+        // Simulate finding a driver from Uber API
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let driver = Driver(name: "John Doe (Uber)", licensePlate: "ABC123", rating: 4.9, estimatedArrivalTime: 3, phoneNumber: "+1234567890")
+            completion(.success(driver))
         }
     }
+}
+
+// Simulated Lyft API Manager
+struct LyftAPIManager {
+    static func findDriver(completion: @escaping (Result<Driver, Error>) -> Void) {
+        // Simulate finding a driver from Lyft API
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let driver = Driver(name: "Jane Smith (Lyft)", licensePlate: "XYZ987", rating: 4.8, estimatedArrivalTime: 5, phoneNumber: "+1234567890")
+            completion(.success(driver))
+        }
+    }
+}
+
+// Simulated Taxi Company API Manager
+struct TaxiCompanyAPIManager {
+    static func findDriver(completion: @escaping (Result<Driver, Error>) -> Void) {
+        // Simulate finding a driver from Taxi Company API
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let driver = Driver(name: "Bob Johnson (Taxi)", licensePlate: "123XYZ", rating: 4.7, estimatedArrivalTime: 7, phoneNumber: "+1234567890")
+            completion(.success(driver))
+        }
+    }
+}
+
+struct DriverInfoView: View {
+    var driver: Driver
+    
+    var body: some View {
+        VStack {
+            Text("Your Driver")
+                .font(.title)
+                .foregroundColor(.black)
+                .padding(.bottom, 8)
+            
+            Text(driver.name)
+                .font(.headline)
+                .foregroundColor(.black)
+            
+            Text("License Plate: \(driver.licensePlate)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+            
+            HStack {
+                Text("Rating:")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+                
+                Text(String(format: "%.1f", driver.rating))
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(10)
+    }
+}
+
+struct EstimatedArrivalTimeView: View {
+    var estimatedArrivalTime: Int
+    
+    var body: some View {
+        VStack {
+            Text("Estimated Arrival Time")
+                .font(.title3)
+                .foregroundColor(.black)
+                .padding(.bottom, 8)
+            
+            Text("\(estimatedArrivalTime) mins")
+                .font(.headline)
+                .foregroundColor(.blue)
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(10)
+    }
+}
+
+enum RideStatus {
+    case findingDriver
+    case driverFound
+}
+
+// Simulated Driver Model
+struct Driver {
+    let name: String
+    let licensePlate: String
+    let rating: Double
+    let estimatedArrivalTime: Int
+    let phoneNumber: String
 }
