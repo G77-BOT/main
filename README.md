@@ -11,4 +11,4 @@ Innovation: We're constantly exploring new technologies and methodologies to sta
 Community: We welcome feedback, advice, and new members to the team with open arms. Collaboration is at the heart of everything we do.
 Continuous Improvement: We believe in continuous learning and improvement. Every challenge is an opportunity to grow, both individually and as a team.
 Join Us:
-Whether you're a seasoned developer or just starting out, there's a place for you in the AdvancedEcoSphere team. Join us in shaping the future of e-commerce and building something truly extraordinary.
+Whether you're a seasoned developer or just starting out, there's a place for you in the EcoSphere Exchange team. Join us in shaping the future of e-commerce and building something truly extraordinary.
