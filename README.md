@@ -1,4 +1,4 @@
-Welcome to the EcoSphere Exchange GitHub repository! This is an advanced e-commerce application designed to revolutionize online shopping. We're not just building an app; we're creating an ecosystem exchange that connects various applications and portals to enhance the shopping experience.
+Welcome to the EcoSphere Exchange GitHub repository! This is an advanced e-commerce application designed to revolutionize online shopping. We're not just building an app, we're creating an ecosystem exchange that connects various applications and portals to enhance the shopping experience.
 
 As a developer with no prior experience, I embarked on this journey with determination. I didn't let my lack of experience stop me; instead, I dove headfirst into learning and creating. This repository documents my journey, showcasing the cool stuff I've built and the challenges I've overcome along the way.
 
