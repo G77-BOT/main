@@ -147,18 +147,32 @@ struct HotelDetailView: View {
     }
     
     private func sendEmailConfirmation() {
-        // Placeholder implementation for sending email confirmation
-        // Integrate with a real email sending service/API
+        // Construct hotel details
         let hotelDetails = "Name: \(hotel.name)\nLocation: \(hotel.location)\nPrice: $\(hotel.pricePerNight)"
-        let emailContent = "Thank you for booking with us!\n\nYour hotel details:\n\(hotelDetails)\n\nWe look forward to welcoming you and hope you enjoy your stay with us. Feel free to contact us for any further assistance or recommendations.\n\nBest Regards,\nThe Hotel Team"
-        // Simulate sending email confirmation
-        EmailService.sendEmail(to: "user@example.com", subject: "Hotel Booking Confirmation", content: emailContent) { success in
-            // Handle email sending result
+        let emailContent = """
+        Thank you for booking with us!
+
+        Your hotel details:
+        \(hotelDetails)
+
+        We look forward to welcoming you and hope you enjoy your stay with us. Feel free to contact us for any further assistance or recommendations.
+
+        Best Regards,
+        The Hotel Team
+        """
+        
+        // Integrate with a real email sending service/API
+        let recipientEmail = "user@example.com"
+        let emailSubject = "Hotel Booking Confirmation"
+
+        // Send email using a real email service
+        EmailService.sendEmail(to: recipientEmail, subject: emailSubject, content: emailContent) { success in
+            // Handle the result of the email sending
             if success {
+                print("Email confirmation sent successfully.")
                 isPresented = false // Dismiss the view after successful booking
             } else {
-                // Handle email sending failure
-                print("Failed to send email confirmation")
+                print("Failed to send email confirmation.")
             }
         }
     }
@@ -184,9 +198,35 @@ struct Hotel: Identifiable {
 }
 
 struct EmailService {
-    static func sendEmail(to recipient: String, subject: String, content: String, completion: @escaping (Bool) -> Void) {
-        // Placeholder implementation for sending email
+    static func sendEmail(to recipient: String?, subject: String, content: String, receipt: String, completion: @escaping (Bool) -> Void) {
+        guard let email = recipient, !email.isEmpty else {
+            print("No email address provided. Please provide an email address.")
+            completion(false)
+            return
+        }
+        
         // Integrate with a real email sending service/API
+        let emailProvider = RealEmailServiceProvider()
+        emailProvider.sendEmail(to: email, subject: subject, body: content) { success in
+            if success {
+                print("Confirmation email successfully sent to: \(email)")
+                // Send receipt in a separate email
+                emailProvider.sendEmail(to: email, subject: "Hotel Booking Receipt", body: receipt) { receiptSuccess in
+                    if receiptSuccess {
+                        print("Receipt email successfully sent to: \(email)")
+                        completion(true)
+                    } else {
+                        print("Failed to send receipt email.")
+                        completion(false)
+                    }
+                }
+            } else {
+                print("Failed to send confirmation email.")
+                completion(false)
+            }
+        }
+    }
+}
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             print("Email sent to: \(recipient)\nSubject: \(subject)\nContent: \(content)")
             completion(true) // Simulate success
