@@ -231,5 +231,24 @@ struct EmailService {
             print("Email sent to: \(recipient)\nSubject: \(subject)\nContent: \(content)")
             completion(true) // Simulate success
         }
+    
+// Current issue: Missing validation for booking dates
+// Solution: Add comprehensive date validation
+func validateBookingDates(checkIn: Date, checkOut: Date) -> Bool {
+    let calendar = Calendar.current
+    let today = Date()
+    return checkIn >= today && checkOut > checkIn && 
+           calendar.dateComponents([.day], from: checkIn, to: checkOut).day! <= 30
+}
+
+// Error: Concurrent booking conflicts
+// Solution: Add booking lock mechanism
+class BookingManager {
+    private var activeBookings: Set<String> = []
+    
+    func lockRoom(_ roomId: String) -> Bool {
+        guard !activeBookings.contains(roomId) else { return false }
+        activeBookings.insert(roomId)
+        return true
     }
 }

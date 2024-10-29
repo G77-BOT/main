@@ -3,5 +3,25 @@
         "comments": "off",
         "strings": "off",
         "other": "off"
-    }
+    },
+    "lldb.library": "/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/LLDB",
+    "lldb.launch.expressions": "native",
+    "cSpell.words": [
+        "abdolaziz",
+        "authtoken",
+        "corsheaders",
+        "dotenv",
+        "gamecontroller",
+        "getenv",
+        "laptopcomputer",
+        "mahmmud",
+        "qvgeyq",
+        "redoc",
+        "runserver",
+        "simplejwt",
+        "subheadline",
+        "viewsets",
+        "yasg",
+        "zrwmi"
+    ]
 }

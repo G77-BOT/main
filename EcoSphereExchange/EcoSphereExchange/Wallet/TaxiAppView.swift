@@ -1,214 +1,353 @@
-//
-//  CallTaxiView.swift
-//  EcoSphereExchange
-//
-//  Created by mahmmud abdolaziz on 2024-04-07.
-//
-
-
 import SwiftUI
+import MapKit
 
-struct CallTaxiView: View {
-    @State private var driver: Driver?
-    @State private var rideStatus: RideStatus = .findingDriver
-    @State private var isCallButtonDisabled: Bool = false
+struct TaxiAppView: View {
+    @StateObject private var viewModel = TaxiAppViewModel()
+    @State private var region = MKCoordinateRegion()
+    @State private var showingServicePicker = false
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            if rideStatus == .findingDriver {
-                ProgressView("Finding a Driver...")
-                    .padding()
-            } else {
-                if let driver = driver {
-                    DriverInfoView(driver: driver)
-                        .padding()
+        NavigationView {
+            ZStack {
+                // Map View
+                Map(coordinateRegion: $region,
+                    showsUserLocation: true,
+                    userTrackingMode: .constant(.follow),
+                    annotationItems: viewModel.annotations) { annotation in
+                    MapAnnotation(coordinate: annotation.coordinate) {
+                        VStack {
+                            Image(systemName: annotation.imageName)
+                                .font(.title)
+                                .foregroundColor(annotation.color)
+                            Text(annotation.title)
+                                .font(.caption)
+                        }
+                    }
+                }
+                .ignoresSafeArea()
+                
+                // Floating panels
+                VStack {
+                    if viewModel.isSearchingDriver {
+                        SearchingDriverView()
+                    }
+                    
+                    Spacer()
+                    
+                    // Bottom Panel
+                    RideDetailsPanel(viewModel: viewModel)
+                        .transition(.move(edge: .bottom))
                 }
                 
-                EstimatedArrivalTimeView(estimatedArrivalTime: driver?.estimatedArrivalTime ?? 5)
-                    .padding()
+                // Service Selection Sheet
+                if showingServicePicker {
+                    Color.black.opacity(0.3)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            showingServicePicker = false
+                        }
+                    
+                    ServicePickerView(viewModel: viewModel)
+                        .transition(.move(edge: .bottom))
+                }
+            }
+            .navigationTitle("Ride Booking")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: viewModel.refreshPrices) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
+            }
+            .alert("Price Alert", isPresented: $viewModel.showingPriceAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(viewModel.priceAlertMessage)
+            }
+        }
+        .onAppear {
+            viewModel.startLocationUpdates()
+        }
+    }
+}
+
+struct SearchingDriverView: View {
+    var body: some View {
+        VStack {
+            ProgressView()
+                .scaleEffect(1.5)
+            Text("Finding nearby drivers...")
+                .font(.headline)
+                .padding()
+        }
+        .frame(maxWidth: .infinity)
+        .background(Color.white)
+        .cornerRadius(15)
+        .padding()
+    }
+}
+
+struct RideDetailsPanel: View {
+    @ObservedObject var viewModel: TaxiAppViewModel
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            // Current Location & Destination
+            VStack(spacing: 12) {
+                LocationField(
+                    icon: "location.fill",
+                    text: viewModel.currentLocation,
+                    color: .blue
+                )
                 
-                Button(action: callDriver) {
-                    Text("Call Driver")
+                LocationField(
+                    icon: "mappin.circle.fill",
+                    text: viewModel.destination,
+                    color: .red
+                )
+            }
+            .padding()
+            
+            // Service Selection
+            if let comparison = viewModel.priceComparison {
+                ServiceComparisonView(comparison: comparison, selectedService: $viewModel.selectedService)
+            }
+            
+            // Book Button
+            Button(action: viewModel.bookRide) {
+                if viewModel.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                } else {
+                    Text("Book Ride")
                         .font(.headline)
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                        .opacity(isCallButtonDisabled ? 0.5 : 1.0)
                 }
-                .disabled(isCallButtonDisabled)
-                .padding()
             }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(10)
+            .disabled(viewModel.isLoading)
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(20, corners: [.topLeft, .topRight])
+        .shadow(radius: 5)
+    }
+}
+
+struct LocationField: View {
+    let icon: String
+    let text: String
+    let color: Color
+    
+    var body: some View {
+        HStack {
+            Image(systemName: icon)
+                .foregroundColor(color)
+                .frame(width: 30)
+            
+            Text(text)
+                .lineLimit(1)
             
             Spacer()
         }
-        .background(Color.white)
-        .edgesIgnoringSafeArea(.all)
-        .onAppear {
-            integrateWithRideBookingServices()
-        }
-    }
-    
-    
-    
-    private func integrateWithRideBookingServices() {
-        // Simulate integrating with multiple ride booking services
-        
-        // Simulate finding a driver from Uber API
-        UberAPIManager.findDriver { result in
-            switch result {
-            case .success(let driver):
-                updateDriverInfo(driver)
-            case .failure(let error):
-                print("Error finding Uber driver: \(error.localizedDescription)")
-                // Handle error scenario
-            }
-        }
-        
-        // Simulate finding a driver from Lyft API
-        LyftAPIManager.findDriver { result in
-            switch result {
-            case .success(let driver):
-                updateDriverInfo(driver)
-            case .failure(let error):
-                print("Error finding Lyft driver: \(error.localizedDescription)")
-                // Handle error scenario
-            }
-        }
-        
-        // Simulate finding a driver from Taxi Company API
-        TaxiCompanyAPIManager.findDriver { result in
-            switch result {
-            case .success(let driver):
-                updateDriverInfo(driver)
-            case .failure(let error):
-                print("Error finding taxi company driver: \(error.localizedDescription)")
-                // Handle error scenario
-            }
-        }
-    }
-    
-    private func callDriver() {
-        guard let phoneNumber = driver?.phoneNumber,
-              let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first else {
-            return
-        }
-        
-        let activityViewController = UIActivityViewController(activityItems: [phoneNumber], applicationActivities: nil)
-        window.rootViewController?.present(activityViewController, animated: true, completion: nil)
-    }
-
-
-    private func updateDriverInfo(_ driver: Driver) {
-        self.driver = driver
-        rideStatus = .driverFound
+        .padding()
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(10)
     }
 }
 
-// Simulated Uber API Manager
-struct UberAPIManager {
-    static func findDriver(completion: @escaping (Result<Driver, Error>) -> Void) {
-        // Simulate finding a driver from Uber API
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let driver = Driver(name: "John Doe (Uber)", licensePlate: "ABC123", rating: 4.9, estimatedArrivalTime: 3, phoneNumber: "+1234567890")
-            completion(.success(driver))
-        }
-    }
-}
-
-// Simulated Lyft API Manager
-struct LyftAPIManager {
-    static func findDriver(completion: @escaping (Result<Driver, Error>) -> Void) {
-        // Simulate finding a driver from Lyft API
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let driver = Driver(name: "Jane Smith (Lyft)", licensePlate: "XYZ987", rating: 4.8, estimatedArrivalTime: 5, phoneNumber: "+1234567890")
-            completion(.success(driver))
-        }
-    }
-}
-
-// Simulated Taxi Company API Manager
-struct TaxiCompanyAPIManager {
-    static func findDriver(completion: @escaping (Result<Driver, Error>) -> Void) {
-        // Simulate finding a driver from Taxi Company API
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let driver = Driver(name: "Bob Johnson (Taxi)", licensePlate: "123XYZ", rating: 4.7, estimatedArrivalTime: 7, phoneNumber: "+1234567890")
-            completion(.success(driver))
-        }
-    }
-}
-
-struct DriverInfoView: View {
-    var driver: Driver
+struct ServiceComparisonView: View {
+    let comparison: PriceComparison
+    @Binding var selectedService: RideService?
     
     var body: some View {
-        VStack {
-            Text("Your Driver")
-                .font(.title)
-                .foregroundColor(.black)
-                .padding(.bottom, 8)
-            
-            Text(driver.name)
+        VStack(spacing: 12) {
+            Text("Available Services")
                 .font(.headline)
-                .foregroundColor(.black)
             
-            Text("License Plate: \(driver.licensePlate)")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-            
+            ForEach(Array(comparison.prices.keys), id: \.self) { service in
+                ServiceRow(
+                    service: service,
+                    price: comparison.prices[service] ?? 0,
+                    isSelected: selectedService == service
+                ) {
+                    selectedService = service
+                }
+            }
+        }
+    }
+}
+
+struct ServiceRow: View {
+    let service: RideService
+    let price: Double
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
             HStack {
-                Text("Rating:")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+                Image(service.iconName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 40, height: 40)
                 
-                Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
+                VStack(alignment: .leading) {
+                    Text(service.name)
+                        .font(.headline)
+                    Text("\(Int(service.estimatedTime)) min")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
                 
-                Text(String(format: "%.1f", driver.rating))
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+                Spacer()
+                
+                Text("$\(String(format: "%.2f", price))")
+                    .font(.title3)
+                    .fontWeight(.bold)
+            }
+            .padding()
+            .background(isSelected ? Color.blue.opacity(0.1) : Color.clear)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(isSelected ? Color.blue : Color.gray, lineWidth: 1)
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+class TaxiAppViewModel: ObservableObject {
+    @Published var currentLocation = "Current Location"
+    @Published var destination = "Destination"
+    @Published var isSearchingDriver = false
+    @Published var isLoading = false
+    @Published var selectedService: RideService?
+    @Published var priceComparison: PriceComparison?
+    @Published var showingPriceAlert = false
+    @Published var priceAlertMessage = ""
+    @Published var annotations: [MapAnnotation] = []
+    
+    private let rideTracker = RideTrackerAlgorithm()
+    private var timer: Timer?
+    
+    init() {
+        startPriceTracking()
+    }
+    
+    func startLocationUpdates() {
+        // Implement location updates
+    }
+    
+    func refreshPrices() {
+        isLoading = true
+        
+        let route = RideRoute(
+            origin: Location(latitude: 0, longitude: 0, address: currentLocation),
+            destination: Location(latitude: 0, longitude: 0, address: destination),
+            time: Date()
+        )
+        
+        let analysis = rideTracker.analyzePrices(route: route)
+        
+        DispatchQueue.main.async {
+            self.priceComparison = analysis.priceComparison
+            self.selectedService = analysis.bestOption.service
+            self.isLoading = false
+            
+            // Show price alerts
+            if let alert = analysis.priceAlerts.first {
+                switch alert {
+                case .significantPriceDrop(let service, let change):
+                    self.showPriceAlert("\(service.name) prices dropped by \(Int(abs(change * 100)))%!")
+                case .priceSpike(let service, let change):
+                    self.showPriceAlert("\(service.name) prices increased by \(Int(change * 100))%")
+                case .bestTimeToBook(let time):
+                    let formatter = DateFormatter()
+                    formatter.timeStyle = .short
+                    self.showPriceAlert("Best time to book: \(formatter.string(from: time))")
+                }
             }
         }
-        .padding()
-        .background(Color(UIColor.secondarySystemBackground))
-        .cornerRadius(10)
     }
-}
-
-struct EstimatedArrivalTimeView: View {
-    var estimatedArrivalTime: Int
     
-    var body: some View {
-        VStack {
-            Text("Estimated Arrival Time")
-                .font(.title3)
-                .foregroundColor(.black)
-                .padding(.bottom, 8)
-            
-            Text("\(estimatedArrivalTime) mins")
-                .font(.headline)
-                .foregroundColor(.blue)
+    func bookRide() {
+        guard let service = selectedService else { return }
+        
+        isSearchingDriver = true
+        
+        // Simulate booking process
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.isSearchingDriver = false
+            self.showPriceAlert("Ride booked with \(service.name)!")
         }
-        .padding()
-        .background(Color(UIColor.secondarySystemBackground))
-        .cornerRadius(10)
+    }
+    
+    private func startPriceTracking() {
+        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+            self?.refreshPrices()
+        }
+    }
+    
+    private func showPriceAlert(_ message: String) {
+        priceAlertMessage = message
+        showingPriceAlert = true
     }
 }
 
-enum RideStatus {
-    case findingDriver
-    case driverFound
+struct MapAnnotation: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
+    let title: String
+    let imageName: String
+    let color: Color
 }
 
-// Simulated Driver Model
-struct Driver {
-    let name: String
-    let licensePlate: String
-    let rating: Double
-    let estimatedArrivalTime: Int
-    let phoneNumber: String
+// View Modifiers
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}
+
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
+    }
+}
+
+extension RideService {
+    var iconName: String {
+        switch self {
+        case .uber: return "uber_icon"
+        case .lyft: return "lyft_icon"
+        case .taxi: return "taxi_icon"
+        }
+    }
+    
+    var name: String {
+        switch self {
+        case .uber: return "Uber"
+        case .lyft: return "Lyft"
+        case .taxi: return "Local Taxi"
+        }
+    }
+    
+    var estimatedTime: TimeInterval {
+        // Implement actual time estimation
+        return Double.random(in: 5...15)
+    }
 }

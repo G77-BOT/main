@@ -8,231 +8,232 @@
 import SwiftUI
 import UserNotifications
 
+class NotificationManager: ObservableObject {
+    @Published var notificationPreferences: [String: Bool] {
+        didSet {
+            UserDefaults.standard.set(notificationPreferences, forKey: "notificationPreferences")
+        }
+    }
+    
+    @Published var notificationTimes: [String: Date] {
+        didSet {
+            let encodedData = try? JSONEncoder().encode(notificationTimes)
+            UserDefaults.standard.set(encodedData, forKey: "notificationTimes")
+        }
+    }
+    
+    @Published var feedbackMessage: String?
+    @Published var showAlert: Bool = false
+    @Published var error: Error?
+    
+    // Initialize preferences and times from UserDefaults, if available
+    init() {
+        self.notificationPreferences = UserDefaults.standard.object(forKey: "notificationPreferences") as? [String: Bool] ?? [
+            "promotions": true,
+            "productUpdates": true,
+            "flightDiscounts": true,
+            "taxiDiscounts": true,
+            "blogUpdates": true
+        ]
+        
+        if let savedTimesData = UserDefaults.standard.data(forKey: "notificationTimes"),
+           let decodedTimes = try? JSONDecoder().decode([String: Date].self, from: savedTimesData) {
+            self.notificationTimes = decodedTimes
+        } else {
+            self.notificationTimes = [
+                "productUpdates": Date(),
+                "flightDiscounts": Date(),
+                "taxiDiscounts": Date()
+            ]
+        }
+        
+        requestNotificationAuthorization()
+    }
+    
+    // Request Notification Permissions
+    func requestNotificationPermissions() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            DispatchQueue.main.async {
+                self.updateNotificationSettings(isEnabled: granted)
+            }
+        }
+    }
+    
+    // Schedule a notification for a specific type
+    func scheduleNotification(for type: String) {
+        guard notificationPreferences.keys.contains(type) else {
+            feedbackMessage = "Invalid notification type: \(type)"
+            showAlert = true
+            return
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = getNotificationTitle(for: type)
+        content.body = getNotificationBody(for: type)
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(UserDefaults.standard.string(forKey: "notificationSound") ?? "default"))
+        
+        let trigger = getNotificationTrigger(for: type)
+        
+        let request = UNNotificationRequest(identifier: type, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self.error = error
+                    self.feedbackMessage = "Error scheduling \(type) notification."
+                } else {
+                    self.feedbackMessage = "\(type.capitalized) notification scheduled successfully."
+                }
+                self.showAlert = true
+            }
+        }
+    }
+    
+    // Remove notification for a specific type
+    func removeNotification(for type: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [type])
+        DispatchQueue.main.async {
+            self.feedbackMessage = "\(type.capitalized) notification removed."
+            self.showAlert = true
+        }
+    }
+    
+    // Localized titles based on notification type
+    private func getNotificationTitle(for type: String) -> String {
+        switch type {
+        case "promotions":
+            return NSLocalizedString("PROMO_TITLE", comment: "")
+        case "productUpdates":
+            return NSLocalizedString("PRODUCT_UPDATE_TITLE", comment: "")
+        case "flightDiscounts":
+            return NSLocalizedString("FLIGHT_DISCOUNT_TITLE", comment: "")
+        case "taxiDiscounts":
+            return NSLocalizedString("TAXI_DISCOUNT_TITLE", comment: "")
+        case "blogUpdates":
+            return NSLocalizedString("BLOG_UPDATE_TITLE", comment: "")
+        default:
+            return NSLocalizedString("NOTIFICATION_TITLE", comment: "")
+        }
+    }
+    
+    // Localized bodies based on notification type
+    private func getNotificationBody(for type: String) -> String {
+        switch type {
+        case "promotions":
+            return NSLocalizedString("PROMO_BODY", comment: "")
+        case "productUpdates":
+            return NSLocalizedString("PRODUCT_UPDATE_BODY", comment: "")
+        case "flightDiscounts":
+            return NSLocalizedString("FLIGHT_DISCOUNT_BODY", comment: "")
+        case "taxiDiscounts":
+            return NSLocalizedString("TAXI_DISCOUNT_BODY", comment: "")
+        case "blogUpdates":
+            return NSLocalizedString("BLOG_UPDATE_BODY", comment: "")
+        default:
+            return NSLocalizedString("NOTIFICATION_BODY", comment: "")
+        }
+    }
+    
+    // Get notification trigger based on type
+    private func getNotificationTrigger(for type: String) -> UNNotificationTrigger {
+        if let customTime = notificationTimes[type] {
+            let calendar = Calendar.current
+            let dateComponents = calendar.dateComponents([.hour, .minute], from: customTime)
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        } else {
+            switch type {
+            case "promotions":
+                return UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false)
+            case "blogUpdates":
+                return UNTimeIntervalNotificationTrigger(timeInterval: 7200, repeats: false)
+            default:
+                return UNTimeIntervalNotificationTrigger(timeInterval: 86400, repeats: false)
+            }
+        }
+    }
+}
+
 struct NotificationSettingsView: View {
-    @State private var notificationsEnabled: Bool = true
+    @StateObject private var notificationManager = NotificationManager()
+    @State private var selectedSound: String = UserDefaults.standard.string(forKey: "notificationSound") ?? "default"
+    
+    let availableSounds = ["default", "chime", "bell", "electronic"]
     
     var body: some View {
         VStack {
-            Toggle("Enable Notifications", isOn: $notificationsEnabled)
-                .padding()
-            
-            Button(action: {
-                requestNotificationAuthorization()
-                scheduleNotifications()
-            }) {
-                Text("Send Test Notifications")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(10)
+            List {
+                // Toggle for each notification type
+                ForEach(Array(notificationManager.notificationPreferences.keys), id: \.self) { key in
+                    Toggle(key.capitalized, isOn: Binding(
+                        get: { notificationManager.notificationPreferences[key] ?? false },
+                        set: { newValue in
+                            notificationManager.notificationPreferences[key] = newValue
+                            if newValue {
+                                notificationManager.scheduleNotification(for: key)
+                            } else {
+                                notificationManager.removeNotification(for: key)
+                            }
+                        }
+                    ))
+                    
+                    // TimePicker for specific notification types
+                    if key == "productUpdates" || key == "flightDiscounts" || key == "taxiDiscounts" {
+                        DatePicker(
+                            "Notification Time",
+                            selection: Binding(
+                                get: { notificationManager.notificationTimes[key] ?? Date() },
+                                set: { newValue in notificationManager.notificationTimes[key] = newValue }
+                            ),
+                            displayedComponents: .hourAndMinute
+                        )
+                        .datePickerStyle(WheelDatePickerStyle())
+                    }
+                }
+                
+                // Notification sound selection
+                Section(header: Text("Notification Sound")) {
+                    Picker("Sound", selection: $selectedSound) {
+                        ForEach(availableSounds, id: \.self) { sound in
+                            Text(sound.capitalized)
+                        }
+                    }
+                    .onChange(of: selectedSound) { newValue in
+                        UserDefaults.standard.set(newValue, forKey: "notificationSound")
+                    }
+                }
             }
-            .padding()
             
-            Spacer()
+            // Alert for feedback or errors
+            .alert(isPresented: $notificationManager.showAlert) {
+                Alert(
+                    title: Text("Notification Status"),
+                    message: Text(notificationManager.feedbackMessage ?? "No message"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
         .navigationTitle("Notification Settings")
-    }
-    
-    private func requestNotificationAuthorization() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if granted {
-                print("Notification authorization granted")
-            } else if let error = error {
-                print("Notification authorization error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    private func scheduleNotifications() {
-        // Clear previously scheduled notifications
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        
-        // Schedule notifications for different events
-        scheduleBlogNotification()
-        scheduleTechnologyArticleNotification()
-        scheduleTaxiDiscountNotification()
-        scheduleFlightBookingDiscountNotification()
-        scheduleSendMoneyDiscountNotification()
-        scheduleHotelBookingDiscountNotification()
-        scheduleProductNotifications()
-        schedulePromotionNotifications()
-        // Add more notification types as needed
-    }
-    
-    private func scheduleBlogNotification() {
-        let blogContent = UNMutableNotificationContent()
-        blogContent.title = "New Blog Available"
-        blogContent.body = "Check out our latest blog post!"
-        blogContent.sound = UNNotificationSound.default
-        
-        let blogTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let blogRequest = UNNotificationRequest(identifier: "blogNotification", content: blogContent, trigger: blogTrigger)
-        UNUserNotificationCenter.current().add(blogRequest)
-    }
-    
-    private func scheduleTechnologyArticleNotification() {
-        let techArticleContent = UNMutableNotificationContent()
-        techArticleContent.title = "New Technology Article"
-        techArticleContent.body = "Stay updated with our latest technology article!"
-        techArticleContent.sound = UNNotificationSound.default
-        
-        let techArticleTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-        let techArticleRequest = UNNotificationRequest(identifier: "techArticleNotification", content: techArticleContent, trigger: techArticleTrigger)
-        UNUserNotificationCenter.current().add(techArticleRequest)
-    }
-    
-    private func scheduleTaxiDiscountNotification() {
-        let discountContent = UNMutableNotificationContent()
-        discountContent.title = "Exclusive Taxi Discount"
-        discountContent.body = "Unlock 20% off your next ride with code TAXI20. Don't miss out!"
-        discountContent.sound = UNNotificationSound.default
-        
-        // Define the date components for scheduling the notification
-        var dateComponents = DateComponents()
-        dateComponents.hour = 10 // Schedule at 10 AM
-        dateComponents.minute = 0 // Schedule at the start of the hour
-        
-        // Create a calendar trigger with the defined date components
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        
-        // Create a request with a unique identifier, content, and trigger
-        let request = UNNotificationRequest(identifier: "taxiDiscountNotification", content: discountContent, trigger: trigger)
-        
-        // Add the request to the notification center
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Error scheduling taxi discount notification: \(error.localizedDescription)")
-            } else {
-                print("Taxi discount notification scheduled successfully.")
-            }
-        }
-    }
-
-    }
-    
-private func scheduleFlightBookingDiscountNotification() {
-    let discountContent = UNMutableNotificationContent()
-    discountContent.title = "Exclusive Flight Booking Discount"
-    discountContent.body = "Unlock 25% off your next flight booking with code FLY25. Limited time offer!"
-    discountContent.sound = UNNotificationSound.default
-    
-    // Define the date components for scheduling the notification
-    var dateComponents = DateComponents()
-    dateComponents.hour = 9 // Schedule at 9 AM
-    dateComponents.minute = 0 // Schedule at the start of the hour
-    
-    // Create a calendar trigger with the defined date components
-    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-    
-    // Create a request with a unique identifier, content, and trigger
-    let request = UNNotificationRequest(identifier: "flightBookingDiscountNotification", content: discountContent, trigger: trigger)
-    
-    // Add the request to the notification center
-    UNUserNotificationCenter.current().add(request) { error in
-        if let error = error {
-            print("Error scheduling flight booking discount notification: \(error.localizedDescription)")
-        } else {
-            print("Flight booking discount notification scheduled successfully.")
-        }
-    }
-}
-    
-private func scheduleSendMoneyDiscountNotification() {
-    let discountContent = UNMutableNotificationContent()
-    discountContent.title = "Send Money Discount"
-    discountContent.body = "Get 50% off on your next money transfer. Limited time offer!"
-    discountContent.sound = UNNotificationSound.default
-    
-    // Define the date components for scheduling the notification
-    var dateComponents = DateComponents()
-    dateComponents.hour = 12 // Schedule at 12 PM
-    dateComponents.minute = 0 // Schedule at the start of the hour
-    
-    // Create a calendar trigger with the defined date components
-    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-    
-    // Create a request with a unique identifier, content, and trigger
-    let request = UNNotificationRequest(identifier: "sendMoneyDiscountNotification", content: discountContent, trigger: trigger)
-    
-    // Add the request to the notification center
-    UNUserNotificationCenter.current().add(request) { error in
-        if let error = error {
-            print("Error scheduling send money discount notification: \(error.localizedDescription)")
-        } else {
-            print("Send money discount notification scheduled successfully.")
+        .alert(item: $notificationManager.error) { error in
+            Alert(
+                title: Text("Error"),
+                message: Text(error.localizedDescription),
+                dismissButton: .default(Text("OK"))
+            )
         }
     }
 }
 
-    
-    
-private func scheduleHotelBookingDiscountNotification() {
-    // Define the notification content
-    let discountContent = UNMutableNotificationContent()
-    discountContent.title = "Hotel Booking Discount"
-    discountContent.body = "Unlock exclusive discounts on hotel bookings. Book now and save!"
-    discountContent.sound = UNNotificationSound.default
-    
-    // Define the trigger for scheduling the notification
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false) // Schedule the notification 3 Hour from now
-    
-    // Create a request with a unique identifier, content, and trigger
-    let request = UNNotificationRequest(identifier: "hotelBookingDiscountNotification", content: discountContent, trigger: trigger)
-    
-    // Add the request to the notification center
-    UNUserNotificationCenter.current().add(request) { error in
-        if let error = error {
-            print("Error scheduling hotel booking discount notification: \(error.localizedDescription)")
-        } else {
-            print("Hotel booking discount notification scheduled successfully.")
+struct NotificationSettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            NotificationSettingsView()
         }
     }
 }
 
-    
-private func scheduleProductNotifications() {
-    // Define the notification content
-    let productContent = UNMutableNotificationContent()
-    productContent.title = "New Product Available"
-    productContent.body = "Discover our latest arrivals and exclusive offers. Don't miss out!"
-    productContent.sound = UNNotificationSound.default
-    
-    // Define the trigger for scheduling the notification
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false) // Schedule the notification 6 Hour from now
-    
-    // Create a request with a unique identifier, content, and trigger
-    let request = UNNotificationRequest(identifier: "productNotification", content: productContent, trigger: trigger)
-    
-    // Add the request to the notification center
-    UNUserNotificationCenter.current().add(request) { error in
-        if let error = error {
-            print("Error scheduling product notification: \(error.localizedDescription)")
-        } else {
-            print("Product notification scheduled successfully.")
-        }
-    }
-}
-    
-private func schedulePromotionNotifications() {
-    // Define the notification content
-    let promotionContent = UNMutableNotificationContent()
-    promotionContent.title = "Exclusive Promotion Alert"
-    promotionContent.body = "Hurry! Limited-time offer: Get up to 50% off on selected items. Shop now!"
-    promotionContent.sound = UNNotificationSound.default
-    
-    // Define the trigger for scheduling the notification
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false) // Schedule the notification 7 Hour from now
-    
-    // Create a request with a unique identifier, content, and trigger
-    let request = UNNotificationRequest(identifier: "promotionNotification", content: promotionContent, trigger: trigger)
-    
-    // Add the request to the notification center
-    UNUserNotificationCenter.current().add(request) { error in
-        if let error = error {
-            print("Error scheduling promotion notification: \(error.localizedDescription)")
-        } else {
-            print("Promotion notification scheduled successfully.")
-        }
-    }
+// Current issue: Settings lost on app restart
+// Solution: Implement UserDefaults persistence
+func saveNotificationPreferences() {
+    UserDefaults.standard.set(notificationPreferences, forKey: "userNotificationPreferences")
+    UserDefaults.standard.synchronize()
 }

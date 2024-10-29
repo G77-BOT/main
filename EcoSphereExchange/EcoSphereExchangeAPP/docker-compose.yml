@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+      - celery
+    environment:
+      - DJANGO_SETTINGS_MODULE=EcoSphereExchangeAPP.settings
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/ecosphere
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    networks:
+      - ecosphere_network
+
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=ecosphere
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - ecosphere_network
+
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ecosphere_network
+
+  celery:
+    build: .
+    command: celery -A EcoSphereExchangeAPP worker -l INFO
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    environment:
+      - DJANGO_SETTINGS_MODULE=EcoSphereExchangeAPP.settings
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/ecosphere
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    networks:
+      - ecosphere_network
+
+  celery-beat:
+    build: .
+    command: celery -A EcoSphereExchangeAPP beat -l INFO
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    environment:
+      - DJANGO_SETTINGS_MODULE=EcoSphereExchangeAPP.settings
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/ecosphere
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    networks:
+      - ecosphere_network
+
+  nginx:
+    image: nginx:1.21
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./static:/static
+      - ./media:/media
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - web
+    networks:
+      - ecosphere_network
+
+volumes:
+  postgres_data:
+  redis_data:
+  static_volume:
+  media_volume:
+
+networks:
+  ecosphere_network:
+    driver: bridge

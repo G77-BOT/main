@@ -1,491 +1,480 @@
-//
-//  GamesView.swift
-//  EcoSphereExchange
-//
-//  Created by mahmmud abdolaziz on 2024-04-07.
-//
-
-
 import SwiftUI
 import Combine
+import GameKit
 
 // MARK: - GameType Enum
-
-enum GameType: String, Identifiable {
+enum GameType: String, Identifiable, CaseIterable {
     case cards
     case candy
     case dice
+    case puzzle
+    case arcade
+    case strategy
     
     var id: String { self.rawValue }
     
     var title: String {
         switch self {
-        case .cards:
-            return "Cards Game"
-        case .candy:
-            return "Candy Game"
-        case .dice:
-            return "Dice Game"
+        case .cards: return "Epic Card Battle"
+        case .candy: return "Candy Crush Adventure"
+        case .dice: return "Dice Master Pro"
+        case .puzzle: return "Brain Teaser Plus"
+        case .arcade: return "Retro Arcade Classic"
+        case .strategy: return "Strategic Conquest"
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .cards: return "Engaging multiplayer card game with advanced AI opponents"
+        case .candy: return "Match-3 puzzle with power-ups and special combinations"
+        case .dice: return "Strategic dice rolling with multipliers and bonuses"
+        case .puzzle: return "Challenge your mind with increasingly difficult puzzles"
+        case .arcade: return "Classic arcade games with modern twists"
+        case .strategy: return "Build your empire in this turn-based strategy game"
         }
     }
 }
 
 // MARK: - GamesView
-
 struct GamesView: View {
+    @StateObject private var viewModel: GamesViewModel = GamesViewModel()
     @State private var selectedGame: GameType?
-    
-    let games: [GameType] = [.cards, .candy, .dice]
+    @State private var showLeaderboard: Bool = false
+    @State private var showAchievements: Bool = false
     
     var body: some View {
         NavigationView {
-            List(games) { game in
-                NavigationLink(destination: gameView(for: game)) {
-                    Text(game.title)
+            ZStack {
+                Color.gray.opacity(0.1).edgesIgnoringSafeArea(.all)
+                
+                ScrollView {
+                    VStack(spacing: 20) {
+                        // Featured Game
+                        if let featured = viewModel.featuredGame {
+                            FeaturedGameView(game: featured)
+                                .padding(.horizontal)
+                        }
+                        
+                        // Game Categories
+                        LazyVGrid(columns: [
+                            GridItem(.flexible()),
+                            GridItem(.flexible())
+                        ], spacing: 16) {
+                            ForEach(GameType.allCases) { game in
+                                GameCardView(game: game) {
+                                    selectedGame = game
+                                    viewModel.trackGameSelection(game)
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+                
+                if viewModel.isLoading {
+                    ProgressView()
+                        .scaleEffect(1.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black.opacity(0.3))
                 }
             }
-            .navigationBarTitle("Games")
+            .navigationTitle("Game Center")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button(action: { showLeaderboard = true }) {
+                            Label("Leaderboard", systemImage: "list.number")
+                        }
+                        
+                        Button(action: { showAchievements = true }) {
+                            Label("Achievements", systemImage: "star.fill")
+                        }
+                        
+                        Button(action: viewModel.refreshGames) {
+                            Label("Refresh", systemImage: "arrow.clockwise")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                }
+            }
+            .sheet(item: $selectedGame) { game in
+                GameDetailView(game: game)
+            }
+            .sheet(isPresented: $showLeaderboard) {
+                LeaderboardView()
+            }
+            .sheet(isPresented: $showAchievements) {
+                AchievementsView()
+            }
+        }
+        .environmentObject(viewModel)
+    }
+}
+
+// MARK: - Featured Game View
+struct FeaturedGameView: View {
+    let game: GameType
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Featured Game")
+                .font(.headline)
+                .foregroundColor(.gray)
+            
+            ZStack(alignment: .bottomLeading) {
+                Image("game_banner_\(game.rawValue)")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 200)
+                    .clipped()
+                    .cornerRadius(15)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(game.title)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    Text(game.description)
+                        .font(.subheadline)
+                        .lineLimit(2)
+                }
+                .padding()
+                .background(
+                    Rectangle()
+                        .fill(.ultraThinMaterial)
+                )
+            }
+        }
+    }
+}
+
+// MARK: - Game Card View
+struct GameCardView: View {
+    let game: GameType
+    let action: () -> Void
+    
+    @EnvironmentObject private var viewModel: GamesViewModel
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 8) {
+                ZStack(alignment: .topTrailing) {
+                    Image("game_thumb_\(game.rawValue)")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 120)
+                        .clipped()
+                        .cornerRadius(12)
+                    
+                    if viewModel.isNewGame(game) {
+                        Text("NEW")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                            .padding(8)
+                    }
+                }
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(game.title)
+                        .font(.headline)
+                    
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                        Text(String(format: "%.1f", viewModel.rating(for: game)))
+                            .font(.subheadline)
+                        
+                        Spacer()
+                        
+                        Text("\(viewModel.playerCount(for: game)) playing")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                }
+                .padding(.horizontal, 8)
+                .padding(.bottom, 8)
+            }
+            .background(Color.white)
+            .cornerRadius(15)
+            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+        }
+    }
+}
+
+// MARK: - Game Detail View
+struct GameDetailView: View {
+    let game: GameType
+    @EnvironmentObject private var viewModel: GamesViewModel
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Game Banner
+                    Image("game_banner_\(game.rawValue)")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 250)
+                        .clipped()
+                    
+                    VStack(alignment: .leading, spacing: 16) {
+                        // Game Info
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(game.title)
+                                .font(.title)
+                                .fontWeight(.bold)
+                            
+                            Text(game.description)
+                                .font(.body)
+                                .foregroundColor(.gray)
+                        }
+                        .padding(.horizontal)
+                        
+                        // Stats
+                        HStack {
+                            StatView(title: "Players", value: "\(viewModel.playerCount(for: game))")
+                            StatView(title: "Rating", value: String(format: "%.1f", viewModel.rating(for: game)))
+                            StatView(title: "Level", value: "\(viewModel.playerLevel(for: game))")
+                        }
+                        .padding(.horizontal)
+                        
+                        // Achievement Progress
+                        AchievementProgressView(progress: viewModel.achievementProgress(for: game))
+                            .padding(.horizontal)
+                        
+                        // Game Modes
+                        GameModesView(modes: viewModel.gameModes(for: game))
+                            .padding(.horizontal)
+                        
+                        // Play Button
+                        Button(action: {
+                            viewModel.startGame(game)
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Text("Play Now")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .cornerRadius(15)
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        viewModel.toggleFavorite(game)
+                    }) {
+                        Image(systemName: viewModel.isFavorite(game) ? "heart.fill" : "heart")
+                            .foregroundColor(viewModel.isFavorite(game) ? .red : .gray)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Supporting Views
+struct StatView: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        VStack {
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.gray)
+            Text(value)
+                .font(.headline)
+        }
+        .frame(maxWidth: .infinity)
+    }
+}
+
+struct AchievementProgressView: View {
+    let progress: Double
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Achievements")
+                .font(.headline)
+            
+            ProgressView(value: progress)
+                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+            
+            Text("\(Int(progress * 100))% Complete")
+                .font(.caption)
+                .foregroundColor(.gray)
+        }
+    }
+}
+
+struct GameModesView: View {
+    let modes: [String]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Game Modes")
+                .font(.headline)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(modes, id: \.self) { mode in
+                        Text(mode)
+                            .font(.subheadline)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(8)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - View Model
+class GamesViewModel: ObservableObject {
+    @Published var isLoading = false
+    @Published var featuredGame: GameType?
+    private var gameStats: [GameType: GameStats] = [:]
+    private let adAlgorithm = GameAdvertisingAlgorithm()
+    
+    init() {
+        loadGames()
+    }
+    
+    func loadGames() {
+        isLoading = true
+        // Simulate loading game data
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.initializeGameStats()
+            self.featuredGame = self.determineFeaturedGame()
+            self.isLoading = false
         }
     }
     
-    private func gameView(for game: GameType) -> some View {
+    func refreshGames() {
+        loadGames()
+    }
+    
+    func trackGameSelection(_ game: GameType) {
+        let behavior = UserBehavior(
+            averagePlayTime: 300,
+            gameCompletionRate: 0.75,
+            interactionRate: 0.85,
+            preferredGames: [game.rawValue],
+            playHistory: []
+        )
+        
+        let placement = adAlgorithm.determineOptimalAdPlacement(
+            for: game.rawValue,
+            userBehavior: behavior
+        )
+        
+        // Use the ad placement to update the UI
+        updateAdPlacement(placement)
+    }
+    
+    func rating(for game: GameType) -> Double {
+        return gameStats[game]?.rating ?? 4.0
+    }
+    
+    func playerCount(for game: GameType) -> Int {
+        return gameStats[game]?.playerCount ?? 0
+    }
+    
+    func playerLevel(for game: GameType) -> Int {
+        return gameStats[game]?.playerLevel ?? 1
+    }
+    
+    func achievementProgress(for game: GameType) -> Double {
+        return gameStats[game]?.achievementProgress ?? 0.0
+    }
+    
+    func gameModes(for game: GameType) -> [String] {
+        return gameStats[game]?.modes ?? []
+    }
+    
+    func isNewGame(_ game: GameType) -> Bool {
+        return gameStats[game]?.isNew ?? false
+    }
+    
+    func isFavorite(_ game: GameType) -> Bool {
+        return gameStats[game]?.isFavorite ?? false
+    }
+    
+    func toggleFavorite(_ game: GameType) {
+        if var stats = gameStats[game] {
+            stats.isFavorite.toggle()
+            gameStats[game] = stats
+            objectWillChange.send()
+        }
+    }
+    
+    func startGame(_ game: GameType) {
+        // Implement game start logic
+    }
+    
+    private func initializeGameStats() {
+        for game in GameType.allCases {
+            gameStats[game] = GameStats(
+                rating: Double.random(in: 4.0...5.0),
+                playerCount: Int.random(in: 100...10000),
+                playerLevel: Int.random(in: 1...50),
+                achievementProgress: Double.random(in: 0...1),
+                modes: generateGameModes(for: game),
+                isNew: Bool.random(),
+                isFavorite: false
+            )
+        }
+    }
+    
+    private func determineFeaturedGame() -> GameType {
+        return GameType.allCases.randomElement() ?? .cards
+    }
+    
+    private func generateGameModes(for game: GameType) -> [String] {
         switch game {
         case .cards:
-            return AnyView(CardsGameView())
+            return ["Single Player", "Multiplayer", "Tournament", "Practice"]
         case .candy:
-            return AnyView(CandyGameView())
+            return ["Classic", "Time Attack", "Puzzle Mode", "Daily Challenge"]
         case .dice:
-            return AnyView(DiceGameView())
+            return ["Classic", "Strategy", "Multiplayer", "Championship"]
+        case .puzzle:
+            return ["Story Mode", "Challenge", "Speed Run", "Zen Mode"]
+        case .arcade:
+            return ["Classic", "Modern", "Endless", "Time Attack"]
+        case .strategy:
+            return ["Campaign", "Skirmish", "Online Battle", "Custom Games"]
         }
+    }
+    
+    private func updateAdPlacement(_ placement: AdPlacement) {
+        // Implement ad placement update logic
     }
 }
 
-// MARK: - CardsGameView
-
-struct CardsGameView: View {
-    @State private var cards: [Card] = Card.generateDeck()
-    @State private var score: Int = 0
-    @State private var isTimerRunning: Bool = false
-    @State private var timeRemaining: Int = 60
-    @State private var showAlert: Bool = false
-    @State private var isShuffling: Bool = false // New state for shuffling animation
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    var body: some View {
-        VStack {
-            Text("Cards Game")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-            
-            Spacer()
-            
-            Text("Score: \(score)")
-                .font(.title)
-            
-            Spacer()
-            
-            TimerView(timeRemaining: timeRemaining)
-            
-            Spacer()
-            
-            if !isShuffling {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 20), count: 4), spacing: 20) {
-                    ForEach(cards) { card in
-                        CardView(card: card)
-                            .onTapGesture {
-                                flipCard(card)
-                            }
-                            .aspectRatio(2/3, contentMode: .fit)
-                    }
-                }
-                .padding()
-            } else {
-                Text("Shuffling...")
-                    .font(.title)
-                    .foregroundColor(.blue)
-            }
-            
-            Spacer()
-            
-            Button(action: {
-                resetGame()
-            }) {
-                Text("Reset")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-        }
-        .padding()
-        .onReceive(timer) { _ in
-            guard isTimerRunning else { return }
-            
-            if timeRemaining > 0 {
-                timeRemaining -= 1
-            } else {
-                endGame()
-            }
-        }
-        .onAppear {
-            startGame()
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Game Over"), message: Text("Your final score is \(score)"), dismissButton: .default(Text("Play Again"), action: resetGame))
-        }
-    }
-    
-    private func flipCard(_ card: Card) {
-        guard let cardIndex = cards.firstIndex(where: { $0.id == card.id }) else { return }
-        
-        withAnimation {
-            cards[cardIndex].isFaceUp.toggle()
-        }
-        
-        if cards.filter({ $0.isFaceUp }).count == 2 {
-            let faceUpCards = cards.filter({ $0.isFaceUp })
-            
-            if faceUpCards[0].value == faceUpCards[1].value {
-                score += 2
-                cards.removeAll { card in
-                    faceUpCards.contains(where: { $0.id == card.id })
-                }
-            } else {
-                score -= 1
-            }
-        }
-    }
-    
-    private func resetGame() {
-        cards = Card.generateDeck()
-        score = 0
-        startGame()
-    }
-    
-    private func startGame() {
-        isTimerRunning = true
-        timeRemaining = 60
-    }
-    
-    private func endGame() {
-        isTimerRunning = false
-        showAlert = true
-    }
-}
-
-// MARK: - CandyGameView
-
-struct CandyGameView: View {
-    @State private var candies: [Candy] = Candy.generateCandies()
-    @State private var score: Int = 0
-    @State private var isTimerRunning: Bool = false
-    @State private var timeRemaining: Int = 60
-    @State private var showAlert: Bool = false
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    var body: some View {
-        VStack {
-            Text("Candy Game")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-            
-            Spacer()
-            
-            Text("Score: \(score)")
-                .font(.title)
-            
-            Spacer()
-            
-            TimerView(timeRemaining: timeRemaining)
-            
-            Spacer()
-            
-            GridView(items: candies, columns: 4) { candy in
-                CandyView(candy: candy)
-                    .onTapGesture {
-                        eatCandy(candy)
-                    }
-            }
-            .padding()
-            
-            Spacer()
-            
-            Button(action: {
-                resetGame()
-            }) {
-                Text("Reset")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-        }
-        .padding()
-        .onReceive(timer) { _ in
-            guard isTimerRunning else { return }
-            
-            if timeRemaining > 0 {
-                timeRemaining -= 1
-            } else {
-                endGame()
-            }
-        }
-        .onAppear {
-            startGame()
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Game Over"), message: Text("Your final score is \(score)"), dismissButton: .default(Text("Play Again"), action: resetGame))
-        }
-    }
-    
-    private func eatCandy(_ candy: Candy) {
-        guard let candyIndex = candies.firstIndex(where: { $0.id == candy.id }) else { return }
-        
-        candies.remove(at: candyIndex)
-        
-        score += candy.points
-    }
-
-    
-    private func resetGame() {
-        candies = Candy.generateCandies()
-        score = 0
-        startGame()
-    }
-    
-    private func startGame() {
-        isTimerRunning = true
-        timeRemaining = 60
-    }
-    
-    private func endGame() {
-        isTimerRunning = false
-        showAlert = true
-    }
-}
-
-// MARK: - DiceGameView
-
-struct DiceGameView: View {
-    @State private var diceValues: [Int] = [1, 1, 1, 1, 1]
-    @State private var score: Int = 0
-    @State private var isTimerRunning: Bool = false
-    @State private var timeRemaining: Int = 60
-    @State private var showAlert: Bool = false
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    var body: some View {
-        VStack {
-            Text("Dice Game")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-            
-            Spacer()
-            
-            Text("Score: \(score)")
-                .font(.title)
-            
-            Spacer()
-            
-            TimerView(timeRemaining: timeRemaining)
-            
-            Spacer()
-            
-            HStack(spacing: 20) {
-                ForEach(diceValues, id: \.self) { value in
-                    Image(systemName: "die.face.\(value).fill")
-                        .font(.system(size: 80))
-                }
-            }
-            
-            Spacer()
-            
-            Button(action: {
-                rollDice()
-            }) {
-                Text("Roll Dice")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-        }
-        .padding()
-        .onReceive(timer) { _ in
-            guard isTimerRunning else { return }
-            
-            if timeRemaining > 0 {
-                timeRemaining -= 1
-            } else {
-                endGame()
-            }
-        }
-        .onAppear {
-            startGame()
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Game Over"), message: Text("Your final score is \(score)"), dismissButton: .default(Text("Play Again"), action: resetGame))
-        }
-    }
-    
-    private func rollDice() {
-        diceValues = (1...5).map { _ in Int.random(in: 1...6) }
-        
-        score = diceValues.reduce(0, +)
-    }
-    
-    private func startGame() {
-        isTimerRunning = true
-        timeRemaining = 60
-    }
-    
-    private func resetGame() {
-        score = 0
-        startGame()
-    }
-    
-    private func endGame() {
-        isTimerRunning = false
-        showAlert = true
-    }
-}
-
-// MARK: - TimerView
-
-struct TimerView: View {
-    let timeRemaining: Int
-    
-    var body: some View {
-        Text("Time: \(timeRemaining)")
-            .font(.headline)
-            .padding()
-            .background(Color.gray)
-            .cornerRadius(10)
-            .foregroundColor(.white)
-    }
-}
-
-// MARK: - Grid View Component
-
-struct GridView<Item, Content>: View where Item: Identifiable, Content: View {
-    private let items: [Item]
-    private let columns: Int
-    private let content: (Item) -> Content
-    
-    init(items: [Item], columns: Int, @ViewBuilder content: @escaping (Item) -> Content) {
-        self.items = items
-        self.columns = columns
-        self.content = content
-    }
-    
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 10) {
-                ForEach(items) { item in
-                    content(item)
-                }
-            }
-            .padding(.horizontal, 16)
-        }
-    }
-}
-
-// MARK: - Model
-
-struct Card: Identifiable {
-    let id = UUID()
-    var isFaceUp = false
-    var value: String
-    
-    static func generateDeck() -> [Card] {
-        var deck: [Card] = []
-        
-        let values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-        
-        for value in values {
-            deck.append(Card(value: value))
-            deck.append(Card(value: value))
-        }
-        
-        return deck.shuffled()
-    }
-}
-
-struct Candy: Identifiable {
-    let id = UUID()
-    let name: String
-    let image: String
-    let points: Int
-    
-    static func generateCandies() -> [Candy] {
-        return [
-            Candy(name: "Chocolate Bar", image: "chocolate", points: 10),
-            Candy(name: "Candy Cane", image: "candycane", points: 5),
-            Candy(name: "Lollipop", image: "lollipop", points: 8),
-            // Add more candy types here
-        ]
-    }
-}
-
-struct CardView: View {
-    let card: Card
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white)
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(lineWidth: 2)
-            
-            if card.isFaceUp {
-                Text(card.value)
-                    .font(.title)
-                    .fontWeight(.bold)
-            } else {
-                Image(systemName: "questionmark")
-                    .font(.system(size: 40))
-                    .foregroundColor(.gray)
-            }
-        }
-    }
-}
-
-struct CandyView: View {
-    let candy: Candy
-    
-    var body: some View {
-        VStack {
-            Image(candy.image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 80, height: 80)
-            Text(candy.name)
-                .font(.subheadline)
-                .fontWeight(.bold)
-        }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 2)
-    }
-}
-
-// MARK: - App
-
-
-struct GameApp: App {
-    var body: some Scene {
-        WindowGroup {
-            GamesView()
-        }
-    }
+// MARK: - Supporting Types
+struct GameStats {
+    var rating: Double
+    var playerCount: Int
+    var playerLevel: Int
+    var achievementProgress: Double
+    var modes: [String]
+    var isNew: Bool
+    var isFavorite: Bool
 }

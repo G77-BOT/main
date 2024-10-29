@@ -720,3 +720,26 @@ class GameViewController: UIViewController {
         ])
     }
 }
+
+// Error: Game state corruption on app termination
+// Solution: Implement auto-save mechanism
+class GameStateManager {
+    private let autoSaveInterval: TimeInterval = 30
+    
+    func startAutoSave() {
+        Timer.scheduledTimer(withTimeInterval: autoSaveInterval, repeats: true) { [weak self] _ in
+            self?.saveGameState()
+        }
+    }
+    
+    func saveGameState() {
+        let gameState = GameState(board: board, currentPlayer: currentPlayer)
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(gameState)
+            UserDefaults.standard.set(data, forKey: "savedGameState")
+        } catch {
+            print("Failed to save game state: \(error)")
+        }
+    }
+}

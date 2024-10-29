@@ -6,230 +6,207 @@
 //
 
 import SwiftUI
-import SwiftData
-import SafariServices
-import Combine // Import Combine for Timer functionality
-import os.log
+import Combine
 
-// Define a custom subsystem for your logs
-private let loggerSubsystem = "com.example.ContentView"
-// Create a custom category for your logs
-private let loggerCategory = "viewLifecycle"
-
-// Model for User Information
-struct User {
-    var name: String
-    var phoneNumber: String
-    var email: String
-    var username: String
-    var password: String
-    var confirmPassword: String
-    var address: String
-}
-
-// Model for Order Details
-struct Order {
-    var id = UUID()
-    var product: String
-    var price: Double
-    var quantity: Int
-}
-
-// Model for Technology Article
-struct TechnologyArticle: Identifiable {
-    let id = UUID()
-    let title: String
-    let content: String
-    let imageUrl: String?
-    let link: URL?
-}
-
-// Define your logo image
-let logoImageName = "Zpp.img"
-
-struct ContentView: View {
-    enum ActiveSheet: Identifiable {
-        case login, signup
+class UserService: ObservableObject {
+    @Published var isLoggedIn: Bool {
+        didSet {
+            UserDefaults.standard.set(isLoggedIn, forKey: "isLoggedIn")
+        }
+    }
+    @Published var currentUser: User? {
+        didSet {
+            if let user = currentUser {
+                let encodedUser = try? JSONEncoder().encode(user)
+                UserDefaults.standard.set(encodedUser, forKey: "currentUser")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "currentUser")
+            }
+        }
+    }
+    @Published var users: [User] = [] {
+        didSet {
+            saveUsers()
+        }
+    }
+    
+    let notificationManager = NotificationManager()
+    
+    init() {
+        // Load stored users and current session
+        loadUsers()
+        if let savedUser = UserDefaults.standard.data(forKey: "currentUser"),
+           let decodedUser = try? JSONDecoder().decode(User.self, from: savedUser) {
+            self.currentUser = decodedUser
+            self.isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        } else {
+            self.currentUser = nil
+            self.isLoggedIn = false
+        }
+    }
+    
+    func login(username: String, password: String) -> Bool {
+        if let user = users.first(where: { $0.username == username && $0.password == password }) {
+            currentUser = user
+            isLoggedIn = true
+            return true
+        }
+        return false
+    }
+    
+    func signup(user: User) -> Bool {
+        if users.contains(where: { $0.username == user.username }) {
+            return false // Username already exists
+        }
+        users.append(user)
+        currentUser = user
+        isLoggedIn = true
         
-        var id: Int {
-            hashValue
+        // Schedule default notifications for new users
+        notificationManager.scheduleNotification(for: "promotions")
+        notificationManager.scheduleNotification(for: "productUpdates")
+        
+        return true
+    }
+    
+    func logout() {
+        currentUser = nil
+        isLoggedIn = false
+    }
+    
+    private func loadUsers() {
+        if let savedUsersData = UserDefaults.standard.data(forKey: "users"),
+           let decodedUsers = try? JSONDecoder().decode([User].self, from: savedUsersData) {
+            self.users = decodedUsers
         }
     }
     
-    @State private var showContent = false
-    @State private var countdown = 5 // Initial countdown value
-    @State private var activeSheet: ActiveSheet?
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Timer publisher
+    private func saveUsers() {
+        if let encodedData = try? JSONEncoder().encode(users) {
+            UserDefaults.standard.set(encodedData, forKey: "users")
+        }
+    }
+}
+
+// Main ContentView with Login and Signup Handling
+struct ContentView: View {
+    @StateObject private var userService = UserService()
+    @State private var username = ""
+    @State private var password = ""
+    @State private var confirmPassword = ""
+    @State private var isSignUp = false
+    @State private var errorMessage: String?
     
     var body: some View {
-        Group {
-            if showContent {
-                TabView {
-                    BlogPostListView()
-                        .tabItem {
-                            Label("Blog", systemImage: "book")
-                        }
-                    
-                    TechnologyArticleListView()
-                        .tabItem {
-                            Label("Technology", systemImage: "laptopcomputer")
-                        }
-                    
-                    MarketView() // Replaced CompanyListView with MarketView
-                        .tabItem {
-                            Label("Market", systemImage: "building.2")
-                        }
-                    
-                    AccountView()
-                        .tabItem {
-                            Label("Account", systemImage: "person.crop.circle")
-                        }
-                }
-                .background(
-                    Image(logoImageName) // Display logo as background image
-                        .resizable()
-                        .scaledToFill()
-                        .edgesIgnoringSafeArea(.all)
-                        .opacity(0.5) // Adjust opacity as needed
-                )
+        NavigationView {
+            if userService.isLoggedIn {
+                MainTabView() // Navigate to main content if user is logged in
             } else {
-                SplashScreen(countdown: $countdown) { // Show SplashScreen
-                    withAnimation {
-                        self.showContent = true
+                VStack {
+                    TextField("Username", text: $username)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    
+                    SecureField("Password", text: $password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    
+                    if isSignUp {
+                        SecureField("Confirm Password", text: $confirmPassword)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
                     }
+                    
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                            .padding()
+                    }
+                    
+                    Button(action: {
+                        if isSignUp {
+                            if password == confirmPassword {
+                                let newUser = User(name: "", phoneNumber: "", email: "", username: username, password: password, confirmPassword: confirmPassword, address: "")
+                                if !userService.signup(user: newUser) {
+                                    errorMessage = "Username already exists!"
+                                }
+                            } else {
+                                errorMessage = "Passwords do not match!"
+                            }
+                        } else {
+                            if !userService.login(username: username, password: password) {
+                                errorMessage = "Invalid login credentials!"
+                            }
+                        }
+                    }) {
+                        Text(isSignUp ? "Sign Up" : "Login")
+                    }
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                    
+                    Button(action: {
+                        isSignUp.toggle()
+                        errorMessage = nil // Clear errors when switching modes
+                    }) {
+                        Text(isSignUp ? "Already have an account? Login" : "Don't have an account? Sign Up")
+                    }
+                    .padding()
                 }
-            }
-        }
-        .onReceive(timer) { _ in // Timer to update countdown
-            if self.countdown > 0 {
-                self.countdown -= 1
-            } else {
-                withAnimation {
-                    self.showContent = true
-                }
-            }
-        }
-        .onAppear {
-            // Log the appearance of the ContentView
-            os_log("ContentView appeared.", log: OSLog(subsystem: loggerSubsystem, category: loggerCategory), type: .info)
-        }
-        .sheet(item: $activeSheet) { item in
-            switch item {
-            case .login:
-                LoginView()
-            case .signup:
-                SignupView()
-            }
-        }
-        .onAppear {
-            activeSheet = .login
-        }
-        .onAppear {
-            activeSheet = .signup
-        }
-    }
-}
-struct SplashScreen: View {
-    @Binding var countdown: Int // Binding for countdown
-    
-    var onTap: () -> Void
-    
-    var body: some View {
-        ZStack {
-            Color.purple // Set the color of the paper-like background
-                .edgesIgnoringSafeArea(.all)
-                .opacity(0.5) // Adjust opacity as needed
-            
-            VStack {
-                Spacer()
-                Text("Countdown: \(countdown)") // Display countdown
-                    .font(.headline)
-                    .padding(.top, 20)
-            }
-            
-            Image(logoImageName) // Display logo
-                .resizable()
-                .scaledToFit()
-                .frame(width: 400, height: 800) // Adjust size as needed
-                .onTapGesture {
-                    onTap() // Execute onTap closure when logo is clicked
-                }
-        }
-    }
-}
-
-struct LoginView: View {
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @ObservedObject private var userService = UserService.shared
-    
-    var body: some View {
-        VStack {
-            TextField("Username", text: $username)
                 .padding()
-                .autocapitalization(.none)
-            
-            SecureField("Password", text: $password)
-                .padding()
-            
-            Button("Login") {
-                userService.login(username: username, password: password)
+                .navigationTitle(isSignUp ? "Sign Up" : "Login")
             }
-            .padding()
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .cornerRadius(10)
-            .padding()
         }
+        .environmentObject(userService.notificationManager)
         .alert(isPresented: $userService.isLoggedIn) {
             Alert(title: Text("Welcome"), message: Text("You are logged in as \(userService.currentUser?.username ?? "")"), dismissButton: .default(Text("OK")))
         }
     }
 }
 
-
-struct SignupView: View {
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var confirmPassword: String = ""
-    @ObservedObject private var userService = UserService.shared
-    
+// Main Tab View after Login
+struct MainTabView: View {
     var body: some View {
-        VStack {
-            TextField("Username", text: $username)
-                .padding()
-                .autocapitalization(.none)
-            
-            SecureField("Password", text: $password)
-                .padding()
-            
-            SecureField("Confirm Password", text: $confirmPassword)
-                .padding()
-            
-            Button("Sign Up") {
-                guard password == confirmPassword else {
-                    // Passwords don't match, show an error
-                    return
+        TabView {
+            BlogPostListView()
+                .tabItem {
+                    Label("Blog", systemImage: "book")
                 }
-                let newUser = User(name: "", phoneNumber: "", email: "", username: username, password: password, confirmPassword: confirmPassword, address: "")
-                userService.signup(user: newUser)
-            }
-            .padding()
-            .foregroundColor(.white)
-            .background(Color.green)
-            .cornerRadius(10)
-            .padding()
-        }
-        .alert(isPresented: $userService.isLoggedIn) {
-            Alert(title: Text("Welcome"), message: Text("You are logged in as \(userService.currentUser?.username ?? "")"), dismissButton: .default(Text("OK")))
+            
+            TechnologyArticleListView()
+                .tabItem {
+                    Label("Technology", systemImage: "laptopcomputer")
+                }
+            
+            MarketView()
+                .tabItem {
+                    Label("Market", systemImage: "building.2")
+                }
+            
+            AccountView()
+                .tabItem {
+                    Label("Account", systemImage: "person.crop.circle")
+                }
         }
     }
 }
 
+class AnalyticsManager {
+    static let shared = AnalyticsManager()
+    
+    func trackEvent(_ name: String, parameters: [String: Any]) {
+        // Implement analytics tracking
+        let timestamp = Date()
+        let userId = UserDefaults.standard.string(forKey: "userId")
+        // Send to analytics service
+    }
+}
 
 
-
-
-
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
 
